@@ -1,46 +1,43 @@
-import React, {Component} from 'react';
-import Node from './Node/Node';
+import React, { Component } from "react";
+import Cell from "./Cell/Cell";
 
-import './MineSweeper.css';
+import "./MineSweeper.css";
 
 export default class MineSweeper extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      nodes: [],
+      cells: [],
     };
   }
 
-  componentDidMount(){
-    const nodes = [];
-    for(let row = 0; row < 15; row++)
-    {
+  componentDidMount() {
+    const cells = [];
+    for (let row = 0; row < 15; row++) {
       const currentRow = [];
-      for(let col = 0; col < 15; col++)
-      {
+      for (let col = 0; col < 15; col++) {
         currentRow.push([]);
       }
-      nodes.push(currentRow);
+      cells.push(currentRow);
     }
-    this.setState({nodes})
+    this.setState({ cells });
   }
 
   render() {
-    const {nodes} = this.state;
-    console.log(nodes)
+    const { cells } = this.state;
+    console.log(cells);
 
     return (
       <div className="board">
-        {
-          nodes.map((row, rowIdx) => {
-            return <div>
-              {
-                row.map((node, nodeIdx) => <Node></Node>)
-              }
-              </div>
-          })
-        }
-        
+        {cells.map((row, rowIdx) => {
+          return (
+            <div>
+              {row.map((cell, cellIdx) => (
+                <Cell></Cell>
+              ))}
+            </div>
+          );
+        })}
       </div>
     );
   }

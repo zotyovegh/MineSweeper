@@ -1,8 +1,8 @@
-.node {
+.cell {
   width: 25px;
   height: 25px;
-  margin-top: -3px;
-  margin-right: 1px;
+  margin-top: -4px;
+  text-align: center;
   outline: 1px solid grey;
   display: inline-block;
 }
