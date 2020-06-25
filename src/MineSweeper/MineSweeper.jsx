@@ -13,10 +13,10 @@ export default class MineSweeper extends Component {
 
   componentDidMount(){
     const nodes = [];
-    for(let row = 0; row < 30; row++)
+    for(let row = 0; row < 15; row++)
     {
       const currentRow = [];
-      for(let col = 0; col < 30; col++)
+      for(let col = 0; col < 15; col++)
       {
         currentRow.push([]);
       }
