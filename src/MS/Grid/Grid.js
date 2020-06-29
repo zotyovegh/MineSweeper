@@ -1,8 +1,10 @@
 import React, { Component } from "react";
+import GridRow from "../GridRow/GridRow";
 
 class Grid extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       rows: this.createGrid(props),
     };
@@ -33,12 +35,25 @@ class Grid extends Component {
 
       let cell = grid[row][col];
 
-      console.log(cell);
+      //Handle mine occurring at the same cell:
+      if (cell.hasMine) {
+        i--;
+      } else {
+        cell.hasMine = true;
+      }
     }
+    console.table(grid);
+    return grid;
   };
 
   render() {
-    return <div></div>;
+    //Create rows
+    
+    let rows = this.state.rows.map((row, index) => {
+      return <GridRow cells={row} key={index} />;
+    });
+
+    return <div className="grid">{rows}</div>;
   }
 }
 
