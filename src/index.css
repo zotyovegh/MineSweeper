@@ -11,7 +11,8 @@ body {
 
 .minesweeper {
   width: 500px;
-  height: 540px;
+  height: 530px;
+  margin-right: 0px;
   border: 1px solid black;
 }
 
@@ -20,15 +21,13 @@ body {
   align-items: center;
   flex-direction: row;
   justify-content: space-between;
-  height: 40px;
+  height: 30px;
+  border-bottom: 1px solid black;
 }
 
 .grid {
-  width: 503px;
+  width: 500px;
   height: 500px;
-  margin-left: -1px;
-
-  border-bottom: none;
 }
 
 .flags,
@@ -48,10 +47,18 @@ body {
 }
 
 .cell {
-  border-right: 1px solid #444;
+  border-right: 1px solid black;
   width: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-top: 1px solid #444;
+  border-bottom: 1px solid black;
+}
+
+.cell:last-child {
+  border-right: none;
+}
+
+.cell:hover {
+  background-color: lightgray;
 }
