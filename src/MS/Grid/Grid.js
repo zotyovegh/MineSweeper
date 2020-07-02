@@ -43,16 +43,7 @@ class Grid extends Component {
     return grid;
   };
 
-  render() {
-    //Create rows
-
-    let rows = this.state.rows.map((row, index) => {
-      return <GridRow cells={row} key={index} />;
-    });
-    return <div className="grid">{rows}</div>;
-  }
-
-  try = (cell) => {
+  tryPress = (cell) => {
     //Display the number of neighboriing bombs or the bomb
 
     let rows = this.state.rows;
@@ -66,13 +57,15 @@ class Grid extends Component {
           rows: newRows,
         },
         () => {
-          this.inspectCell(cell);
+          this.tryPress(cell);
         }
       );
     } else {
       if (!currentCell.isPressed && !cell.hasFlag) {
-        this.props.handleCellInspect();
+        this.props.onCellInspect();
         currentCell.isPressed = true;
+
+        this.setState({rows});
       }
     }
   };
@@ -93,6 +86,21 @@ class Grid extends Component {
     }
     return total;
   };
+
+
+
+  render() {
+    //Create rows
+
+    let rows = this.state.rows.map((row, index) => {
+      return <GridRow 
+      cells={row} 
+      key={index}
+      tryPress = {this.tryPress}
+      />;
+    });
+    return <div className="grid">{rows}</div>;
+  }
 }
 
 export default Grid;
