@@ -76,6 +76,23 @@ class Grid extends Component {
       }
     }
   };
+
+  countNeighbours = (cell) => {
+    //Method based on the reference code, that was created in java
+    let total = 0;
+    for (let row = -1; row <= 1; row++) {
+      for (let col = -1; col <= 1; col++) {
+        let i = row + cell.y;
+        let j = col + cell.x;
+        if (i < this.state.rows.length && j < this.state.rows[0].length) {
+          if (this.state.rows[i][j].hasMine && !(row === 0 && col === 0)) {
+            total++;
+          }
+        }
+      }
+    }
+    return total;
+  };
 }
 
 export default Grid;
