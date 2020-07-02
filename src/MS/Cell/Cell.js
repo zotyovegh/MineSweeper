@@ -1,6 +1,6 @@
 import React from "react";
 
-const GridCell = (props) => {
+const Cell = (props) => {
   let cell = () => {
     if (props.data.isPressed) {
       return <div className="opencell"></div>;
@@ -10,4 +10,4 @@ const GridCell = (props) => {
   };
   return cell();
 };
-export default GridCell;
+export default Cell;

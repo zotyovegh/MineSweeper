@@ -11,9 +11,9 @@ body {
 
 .minesweeper {
   width: 500px;
-  height: 530px;
+  height: 550px;
   margin-right: 0px;
-  border: 1px solid black;
+  border: 3px solid black;
 }
 
 .grid-header {
@@ -21,8 +21,8 @@ body {
   align-items: center;
   flex-direction: row;
   justify-content: space-between;
-  height: 30px;
-  border-bottom: 1px solid black;
+  height: 50px;
+  border-bottom: 2px solid black;
 }
 
 .grid {
@@ -60,5 +60,5 @@ body {
 }
 
 .cell:hover {
-  background-color: lightgray;
+  background-color: lightsalmon;
 }
