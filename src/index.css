@@ -12,9 +12,8 @@ body {
 
 .minesweeper {
   width: 500px;
-  height: 550px;
-  margin-right: 0px;
-  border: 3px solid black;
+  height: 552px;
+  border: 2px solid black;
 }
 
 .grid-header {
@@ -31,8 +30,11 @@ body {
   height: 500px;
 }
 
-.press.cell {
-  background-color: red;
+.pressed.cell {
+  background-color: lightgray;
+}
+.pressed.cell:hover {
+  background-color: lightgray;
 }
 
 .flags,
@@ -51,6 +53,10 @@ body {
   height: 50px;
 }
 
+.row:last-child {
+  border-bottom: none;
+}
+
 .cell {
   border-right: 1px solid black;
   width: 50px;
@@ -60,10 +66,6 @@ body {
   border-bottom: 1px solid black;
 }
 
-.cell:last-child {
-  border-right: none;
-}
-
 .cell:hover {
-  background-color: lightsalmon;
+  background-color: lightsteelblue;
 }
