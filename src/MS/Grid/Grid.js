@@ -105,6 +105,31 @@ class Grid extends Component {
     return total;
   };
 
+  findEmptyCell = cell => {
+    //Spin through the neighbouring cells just as in the before method
+    let rows = this.state.rows;
+    for (let row = -1; row <= 1; row++) {
+      for (let col = -1; col <= 1; col++) {
+        if (cell.y + row >= 0 && cell.x + col >= 0) {
+          let rowOff = row + cell.y;
+          let colOff = col + cell.x;
+          if (
+            rowOff < this.state.rows.length &&
+            colOff < this.state.rows[0].length
+          ) {
+            if (
+              !rows[rowOff][colOff].hasMine &&
+              !rows[rowOff][colOff].isPressed
+            ) {
+              this.tryPress(rows[rowOff][colOff]);
+            }
+          }
+        }
+      }
+    }
+   
+  }
+
   render() {
     //Create rows
 
