@@ -3,14 +3,16 @@ import React from "react";
 const Cell = (props) => {
   let cell = () => {
     if (props.data.isPressed) {
-      if (props.data.minesAround === 0) {
+      if (props.data.hasMine) {
         return (
           <div
             className="pressed cell"
             onClick={() => props.tryPress(props.data)}
-          ></div>
+          >
+            <p>m</p>
+          </div>
         );
-      } else if (props.data.hasMine) {
+      } else if (props.data.minesAround === 0) {
         return (
           <div
             className="pressed cell"
@@ -35,4 +37,5 @@ const Cell = (props) => {
   };
   return cell();
 };
+
 export default Cell;

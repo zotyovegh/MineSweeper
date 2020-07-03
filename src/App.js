@@ -17,9 +17,13 @@ class App extends Component {
   handleCellInspect = () => {
     if (this.state.game !== "running" && this.state.openedCells === 0) {
       this.setState({
-        game: "running"
-      })
+        game: "running",
+      });
     }
+
+    this.setState((previousState) => {
+      return { openedCells: previousState.openedCells + 1 };
+    });
   };
 
   render() {
@@ -31,7 +35,7 @@ class App extends Component {
           rows={this.state.rows}
           columns={this.state.columns}
           mines={this.state.mines}
-          onCellInspect={this.handleCellInspect }
+          onCellInspect={this.handleCellInspect}
         />
       </div>
     );
