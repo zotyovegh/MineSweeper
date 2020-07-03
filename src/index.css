@@ -7,6 +7,7 @@ body {
   align-items: center;
   display: flex;
   height: 100%;
+  display: flex;
 }
 
 .minesweeper {
@@ -28,6 +29,10 @@ body {
 .grid {
   width: 500px;
   height: 500px;
+}
+
+.press.cell {
+  background-color: red;
 }
 
 .flags,
