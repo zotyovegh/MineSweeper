@@ -39,35 +39,45 @@ class Grid extends Component {
         chosencell.hasMine = true;
       }
     }
-    console.table(grid);
+    //console.table(grid);
     return grid;
   };
 
   tryPress = (cell) => {
     //Display the number of neighboriing bombs or the bomb
 
-    let rows = this.state.rows;
-    let currentCell = rows[cell.x][cell.y];
+    let neighbours = new Promise((resolve) => {
+      let bombs = this.countNeighbours(cell);
 
-    if (currentCell.hasMine && this.props.openedCells === 0) {
-      console.log("cell already has mine, restart");
-      let newRows = this.createGrid(this.props);
-      this.setState(
-        {
-          rows: newRows,
-        },
-        () => {
-          this.tryPress(cell);
+      resolve(bombs);
+    });
+
+    neighbours.then((countNeighbours) => {
+      let rows = this.state.rows;
+      let currentCell = rows[cell.x][cell.y];
+
+      if (currentCell.hasMine && this.props.openedCells === 0) {
+        let newRows = this.createGrid(this.props);
+        this.setState(
+          {
+            rows: newRows,
+          },
+          () => {
+            this.tryPress(cell);
+          }
+        );
+      } else {
+        if (!currentCell.isPressed && !cell.hasFlag) {
+          this.props.onCellInspect();
+          currentCell.isPressed = true;
+          currentCell.minesAround = countNeighbours;
+
+          console.log(currentCell);
+          console.log(currentCell.minesAround);
+          this.setState({ rows });
         }
-      );
-    } else {
-      if (!currentCell.isPressed && !cell.hasFlag) {
-        this.props.onCellInspect();
-        currentCell.isPressed = true;
-
-        this.setState({rows});
       }
-    }
+    });
   };
 
   countNeighbours = (cell) => {
@@ -75,11 +85,19 @@ class Grid extends Component {
     let total = 0;
     for (let row = -1; row <= 1; row++) {
       for (let col = -1; col <= 1; col++) {
-        let i = row + cell.y;
-        let j = col + cell.x;
-        if (i < this.state.rows.length && j < this.state.rows[0].length) {
-          if (this.state.rows[i][j].hasMine && !(row === 0 && col === 0)) {
-            total++;
+        if (cell.y + row >= 0 && cell.x + col >= 0) {
+          let rowOff = row + cell.y;
+          let colOff = col + cell.x;
+          if (
+            rowOff < this.state.rows.length &&
+            colOff < this.state.rows[0].length
+          ) {
+            if (
+              this.state.rows[rowOff][colOff].hasMine &&
+              !(row === 0 && col === 0)
+            ) {
+              total++;
+            }
           }
         }
       }
@@ -87,17 +105,11 @@ class Grid extends Component {
     return total;
   };
 
-
-
   render() {
     //Create rows
 
     let rows = this.state.rows.map((row, index) => {
-      return <GridRow 
-      cells={row} 
-      key={index}
-      tryPress = {this.tryPress}
-      />;
+      return <GridRow cells={row} key={index} tryPress={this.tryPress} />;
     });
     return <div className="grid">{rows}</div>;
   }
