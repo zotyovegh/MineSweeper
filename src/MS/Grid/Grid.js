@@ -73,9 +73,12 @@ class Grid extends Component {
           currentCell.isPressed = true;
           currentCell.minesAround = countNeighbours;
 
-          console.log(currentCell);
-          console.log(currentCell.minesAround);
+          //   console.log(currentCell);
           this.setState({ rows });
+
+          if (!currentCell.hasMine && countNeighbours === 0) {
+            this.findEmptyCell(cell);
+          }
         }
       }
     });
