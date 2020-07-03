@@ -93,7 +93,7 @@ class Grid extends Component {
             colOff < this.state.rows[0].length
           ) {
             if (
-              this.state.rows[rowOff][colOff].hasMine &&
+              this.state.rows[colOff][rowOff].hasMine &&
               !(row === 0 && col === 0)
             ) {
               total++;
