@@ -17,8 +17,9 @@ class Grid extends Component {
       grid.push([]);
       for (let j = 0; j < props.columns; j++) {
         grid[i].push({
-          x: i,
-          y: j,
+          x: j,
+          y: i,
+
           minesAround: 0,
           hasMine: false,
           isPressed: false,
@@ -54,7 +55,7 @@ class Grid extends Component {
 
     neighbours.then((countNeighbours) => {
       let rows = this.state.rows;
-      let currentCell = rows[cell.x][cell.y];
+      let currentCell = rows[cell.y][cell.x];
 
       if (currentCell.hasMine && this.props.openedCells === 0) {
         let newRows = this.createGrid(this.props);
@@ -93,7 +94,7 @@ class Grid extends Component {
             colOff < this.state.rows[0].length
           ) {
             if (
-              this.state.rows[colOff][rowOff].hasMine &&
+              this.state.rows[rowOff][colOff].hasMine &&
               !(row === 0 && col === 0)
             ) {
               total++;
@@ -105,7 +106,7 @@ class Grid extends Component {
     return total;
   };
 
-  findEmptyCell = cell => {
+  findEmptyCell = (cell) => {
     //Spin through the neighbouring cells just as in the before method
     let rows = this.state.rows;
     for (let row = -1; row <= 1; row++) {
@@ -127,8 +128,7 @@ class Grid extends Component {
         }
       }
     }
-   
-  }
+  };
 
   render() {
     //Create rows
