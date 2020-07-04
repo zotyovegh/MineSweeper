@@ -9,10 +9,16 @@ class App extends Component {
     time: 0,
     rows: 10,
     columns: 10,
-    mines: 10,
+    mines: 15,
     flags: 10,
     game: "pending", //Can be pending, running and ended
   };
+
+  finishGame = () => {
+    this.setState({
+      game: "ended"
+    })
+  }
 
   handleCellInspect = () => {
     if (this.state.game !== "running" && this.state.openedCells === 0) {
@@ -26,6 +32,10 @@ class App extends Component {
     });
   };
 
+  changeFlagsNumber = (amount) => {
+      this.setState({flags: this.state.flags + amount})
+  }
+
   render() {
     return (
       <div className="minesweeper">
@@ -35,7 +45,9 @@ class App extends Component {
           rows={this.state.rows}
           columns={this.state.columns}
           mines={this.state.mines}
+          changeFlagsNumber={this.changeFlagsNumber}
           onCellInspect={this.handleCellInspect}
+          finishGame = {this.finishGame}
         />
       </div>
     );

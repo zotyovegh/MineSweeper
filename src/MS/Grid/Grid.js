@@ -47,6 +47,11 @@ class Grid extends Component {
   tryPress = (cell) => {
     //Display the number of neighboriing bombs or the bomb
 
+    if (this.props.game === "ended") {
+      console.log(cell);
+      return;
+    }
+
     let neighbours = new Promise((resolve) => {
       let bombs = this.countNeighbours(cell);
 
@@ -78,6 +83,10 @@ class Grid extends Component {
 
           if (!currentCell.hasMine && countNeighbours === 0) {
             this.findEmptyCell(cell);
+          }
+
+          if (currentCell.hasMine && this.props.openedCells !== 0) {
+            this.props.finishGame();
           }
         }
       }
@@ -133,11 +142,29 @@ class Grid extends Component {
     }
   };
 
+  flag = (cell) => {
+    let rows = this.state.rows;
+    if (this.props.game === "ended") {
+      return;
+    } else if (!cell.isPressed) {
+      cell.hasFlag = !cell.hasFlag;
+      this.setState({ rows });
+      this.props.changeFlagsNumber(cell.hasFlag ? -1 : 1);
+    }
+  };
+
   render() {
     //Create rows
 
     let rows = this.state.rows.map((row, index) => {
-      return <GridRow cells={row} key={index} tryPress={this.tryPress} />;
+      return (
+        <GridRow
+          cells={row}
+          key={index}
+          tryPress={this.tryPress}
+          flag={this.flag}
+        />
+      );
     });
     return <div className="grid">{rows}</div>;
   }

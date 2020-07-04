@@ -30,13 +30,20 @@ body {
   height: 500px;
 }
 
+.flagged.cell {
+  background-color: rgb(253, 160, 53);
+}
+
+.bomb.cell {
+  background-color: red;
+}
+
 .pressed.cell {
   background-color: lightgray;
 }
 .pressed.cell:hover {
   background-color: lightgray;
 }
-
 
 .flags,
 .reset,
@@ -68,5 +75,5 @@ body {
 }
 
 .cell:hover {
-  background-color: lightsteelblue;
+  background-color: rgb(231, 255, 250);
 }

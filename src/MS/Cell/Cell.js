@@ -6,8 +6,11 @@ const Cell = (props) => {
       if (props.data.hasMine) {
         return (
           <div
-            className="pressed cell"
+            className="bomb cell"
             onClick={() => props.tryPress(props.data)}
+            onContextMenu={(e) => {
+              e.preventDefault();
+            }}
           >
             <p>m</p>
           </div>
@@ -17,21 +20,49 @@ const Cell = (props) => {
           <div
             className="pressed cell"
             onClick={() => props.tryPress(props.data)}
-          ></div>
+            onContextMenu={(e) => {
+              e.preventDefault();
+              props.flag(props.data);
+            }}
+          />
         );
       } else {
         return (
           <div
             className="pressed cell"
             onClick={() => props.tryPress(props.data)}
+            onContextMenu={(e) => {
+              e.preventDefault();
+              props.flag(props.data);
+            }}
           >
             {props.data.minesAround}
           </div>
         );
       }
+    } else if (props.data.hasFlag) {
+      return (
+        <div
+          className="flagged cell"
+          onClick={() => props.tryPress(props.data)}
+          onContextMenu={(e) => {
+            e.preventDefault();
+            props.flag(props.data);
+          }}
+        >
+          f
+        </div>
+      );
     } else {
       return (
-        <div className="cell" onClick={() => props.tryPress(props.data)}></div>
+        <div
+          className="cell"
+          onClick={() => props.tryPress(props.data)}
+          onContextMenu={(e) => {
+            e.preventDefault();
+            props.flag(props.data);
+          }}
+        />
       );
     }
   };
