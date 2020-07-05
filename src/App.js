@@ -13,14 +13,20 @@ class App extends Component {
       columns: 10,
       mines: 15,
       flags: 15,
-      game: "pending", //Can be pending, running and ended
+      game: "pending", //Can be pending, running, ended and won
     };
 
     this.savedState = this.state;
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.game === "running") {
+      this.winning();
+    }
+  }
+
   reset = () => {
-    this.setState({...this.savedState});
+    this.setState({ ...this.savedState });
   };
 
   finishGame = () => {
@@ -43,6 +49,20 @@ class App extends Component {
 
   changeFlagsNumber = (amount) => {
     this.setState({ flags: this.state.flags + amount });
+  };
+
+  winning = () => {
+    if (
+      this.state.mines + this.state.openedCells >=
+      this.state.columns * this.state.rows
+    ) {
+      this.setState(
+        {
+          game: "won",
+        },
+        alert("Congratulations you won the game!!!")
+      );
+    }
   };
 
   render() {
