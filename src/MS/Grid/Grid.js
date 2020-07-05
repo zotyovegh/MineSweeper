@@ -4,10 +4,17 @@ import GridRow from "../GridRow/GridRow";
 class Grid extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       rows: this.createGrid(props),
     };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.openedCells > nextProps.openedCells) {
+      this.setState({
+        rows: this.createGrid(nextProps),
+      });
+    }
   }
 
   createGrid = (props) => {
@@ -40,15 +47,11 @@ class Grid extends Component {
         chosencell.hasMine = true;
       }
     }
-    //console.table(grid);
     return grid;
   };
 
   tryPress = (cell) => {
-    //Display the number of neighboriing bombs or the bomb
-
     if (this.props.game === "ended") {
-      console.log(cell);
       return;
     }
 
@@ -78,7 +81,6 @@ class Grid extends Component {
           currentCell.isPressed = true;
           currentCell.minesAround = countNeighbours;
 
-          //   console.log(currentCell);
           this.setState({ rows });
 
           if (!currentCell.hasMine && countNeighbours === 0) {
@@ -155,7 +157,6 @@ class Grid extends Component {
 
   render() {
     //Create rows
-
     let rows = this.state.rows.map((row, index) => {
       return (
         <GridRow

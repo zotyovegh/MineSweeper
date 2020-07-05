@@ -8,7 +8,7 @@ const Header = (props) => {
   return (
     <div className="grid-header">
       <div className="flags">{props.flags}</div>
-      <button className="reset">RESET</button>
+      <button className="reset" onClick={props.reset}>RESET</button>
       <div className="timer">{timeToSend}</div>
     </div>
   );

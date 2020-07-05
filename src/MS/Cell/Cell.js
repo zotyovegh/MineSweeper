@@ -11,9 +11,7 @@ const Cell = (props) => {
             onContextMenu={(e) => {
               e.preventDefault();
             }}
-          >
-            <p>m</p>
-          </div>
+          ></div>
         );
       } else if (props.data.minesAround === 0) {
         return (
@@ -49,9 +47,7 @@ const Cell = (props) => {
             e.preventDefault();
             props.flag(props.data);
           }}
-        >
-          f
-        </div>
+        ></div>
       );
     } else {
       return (
