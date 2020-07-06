@@ -19,6 +19,21 @@ class App extends Component {
     this.savedState = this.state;
   }
 
+  componentWillMount() {
+    this.intervals = [];
+  }
+
+  tick = () => {
+    if (this.state.openedCells > 0 && this.state.game === "running") {
+      let time = this.state.time + 1;
+      this.setState({ time });
+    }
+  };
+
+  setInterval = (fn, t) => {
+    this.intervals.push(setInterval(fn, t));
+  };
+
   componentDidUpdate(prevProps, prevState) {
     if (this.state.game === "running") {
       this.winning();
@@ -26,7 +41,10 @@ class App extends Component {
   }
 
   reset = () => {
-    this.setState({ ...this.savedState });
+    this.intervals.map(clearInterval);
+    this.setState({ ...this.savedState }, () => {
+      this.intervals = [];
+    });
   };
 
   finishGame = () => {
@@ -37,9 +55,14 @@ class App extends Component {
 
   handleCellInspect = () => {
     if (this.state.game !== "running" && this.state.openedCells === 0) {
-      this.setState({
-        game: "running",
-      });
+      this.setState(
+        {
+          game: "running",
+        },
+        () => {
+          this.setInterval(this.tick, 1000);
+        }
+      );
     }
 
     this.setState((previousState) => {
@@ -56,12 +79,9 @@ class App extends Component {
       this.state.mines + this.state.openedCells >=
       this.state.columns * this.state.rows
     ) {
-      this.setState(
-        {
-          game: "won",
-        },
-        alert("Congratulations you won the game!!!")
-      );
+      this.setState({
+        game: "won",
+      });
     }
   };
 
