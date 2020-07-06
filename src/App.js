@@ -34,7 +34,7 @@ class App extends Component {
     this.intervals.push(setInterval(fn, t));
   };
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate() {
     if (this.state.game === "running") {
       this.winning();
     }

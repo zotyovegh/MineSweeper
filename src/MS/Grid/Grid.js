@@ -51,7 +51,7 @@ class Grid extends Component {
   };
 
   tryPress = (cell) => {
-    if (this.props.game === "ended") {
+    if (this.props.game === "ended" || this.props.game === "won") {
       return;
     }
 
@@ -146,7 +146,7 @@ class Grid extends Component {
 
   flag = (cell) => {
     let rows = this.state.rows;
-    if (this.props.game === "ended") {
+    if (this.props.game === "ended" || this.props.game === "won") {
       return;
     } else if (!cell.isPressed) {
       cell.hasFlag = !cell.hasFlag;
