@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./index.css";
-import Grid from "./Game/Grid";
-import Header from "./Game/Header";
+import Grid from "./Grid";
+import Header from "./Header";
 
 class Game extends Component {
   constructor() {
