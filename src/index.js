@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Game from "./Minesweeper";
+import Minesweeper from "./Minesweeper";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Game />
+    <Minesweeper />
   </React.StrictMode>,
   document.getElementById("root")
 );

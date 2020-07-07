@@ -3,7 +3,19 @@ import "./index.css";
 
 class Dialog extends Component {
   render() {
-    return <div>cssumi</div>;
+    let dialog = (
+      <div className="dialogStyles">
+        <button className="closeButton" onClick={this.props.onClose}>
+          x
+        </button>
+        
+      </div>
+    );
+
+    if (!this.props.isOpen) {
+      dialog = null;
+    }
+    return <div>{dialog}</div>;
   }
 }
 
