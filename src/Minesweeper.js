@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./index.css";
-import Grid from "./MS/Grid/Grid";
-import Header from "./MS/Header/Header";
+import Grid from "./Grid/Grid";
+import Header from "./Header/Header";
 
 class Minesweeper extends Component {
   constructor() {
