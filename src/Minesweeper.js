@@ -3,7 +3,7 @@ import "./index.css";
 import Grid from "./MS/Grid/Grid";
 import Header from "./MS/Header/Header";
 
-class App extends Component {
+class Minesweeper extends Component {
   constructor() {
     super();
     this.state = {
@@ -108,4 +108,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Minesweeper;
