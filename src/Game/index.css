@@ -8,7 +8,7 @@ body {
   display: flex;
   height: 100%;
   display: flex;
-  font-size: 38px;
+  font-size: 30px;
 }
 
 .flags,
@@ -27,39 +27,27 @@ body {
   font-size: 28px;
 }
 
-.minesweeper {
-  width: 500px;
-  height: 552px;
-  border: 2px solid black;
-}
-
-.grid {
-  width: 500px;
-  height: 500px;
-}
-
 .grid-header {
   display: flex;
   align-items: center;
   flex-direction: row;
   justify-content: space-between;
   height: 50px;
-  border: 1px solid black;
-  border-bottom: 2px solid black;
+  border: 2px solid black;
 }
 
 .row {
   display: flex;
-  height: 50px;
 }
 
 .row:last-child {
-  border-bottom: none;
+  border-bottom: 1px solid black;
 }
 
 .cell {
   border-right: 1px solid black;
-  width: 50px;
+  width: 40px;
+  height: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -67,7 +55,11 @@ body {
 }
 
 .cell:first-child {
-  border-left: 1px solid black;
+  border-left: 2px solid black;
+}
+
+.cell:last-child {
+  border-right: 2px solid black;
 }
 
 .cell:hover {

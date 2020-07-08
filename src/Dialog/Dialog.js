@@ -17,8 +17,8 @@ class Dialog extends Component {
             </tr>
             <tr>
               <td></td>
-              <td>Height</td>
-              <td>Width</td>
+              <td>Rows</td>
+              <td>Columns</td>
               <td>Mines</td>
             </tr>
             <tr>

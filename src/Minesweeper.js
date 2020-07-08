@@ -6,6 +6,10 @@ import "./index.css";
 class Minesweeper extends Component {
   state = {
     isOpen: false,
+    rows: 10,
+    columns: 10,
+    mines: 15,
+    flags: 15
   };
 
   changeDialog = () => {
@@ -15,7 +19,6 @@ class Minesweeper extends Component {
   };
 
   onNewGame = () => {
-    
     this.changeDialog();
   };
 
@@ -31,7 +34,7 @@ class Minesweeper extends Component {
           ></Dialog>
         </div>
 
-        <Game />
+        <Game rows={this.state.rows} columns={this.state.columns} mines={this.state.mines} flags={this.state.flags} />
       </div>
     );
   }
