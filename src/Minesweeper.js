@@ -5,7 +5,7 @@ import "./index.css";
 
 class Minesweeper extends Component {
   state = {
-    isOpen: true,
+    IsOpen: false,
   };
   render() {
     return (

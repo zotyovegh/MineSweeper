@@ -1,14 +1,14 @@
 .dialogStyles {
-  width: 300px;
-  height: 200px;
+  width: 430px;
+  height: 225px;
   max-width: 100%;
   margin: 0 auto;
   position: fixed;
   left: 50%;
-  top: 40%;
+  top: 50%;
   transform: translate(-50%, -50%);
   z-index: 999;
-  background-color: lightgrey;
+  background-color: lightgreen;
   padding: 10px, 20px, 40px;
   border-radius: 8px;
   display: flex;
@@ -27,4 +27,20 @@
   align-self: flex-end;
   margin-top: 5px;
   margin-right: 5px;
+}
+
+.dialogStyles {
+  font-size: 25px;
+}
+
+.custom {
+  width: 40px;
+}
+
+#newGame {
+  width: 140px;
+  height: 30px;
+  font-size: 20px;
+  margin-top: 10px;
+  margin-left: 5px;
 }
