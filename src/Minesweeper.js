@@ -1,16 +1,20 @@
-import React, { Component } from "react";
+import React, { Component, createRef } from "react";
 import Game from "../../minesweeper/src/Game";
 import Dialog from "./Dialog";
 import "./index.css";
 
 class Minesweeper extends Component {
-  state = {
-    isOpen: false,
-    rows: 10,
-    columns: 10,
-    mines: 15,
-    flags: 15,
-  };
+  constructor(props) {
+    super();
+    this.state = {
+      isOpen: false,
+      rows: 10,
+      columns: 10,
+      mines: 15,
+      flags: 15,
+    };
+    this.game = createRef();
+  }
 
   changeDialog = () => {
     this.state.isOpen
@@ -20,8 +24,16 @@ class Minesweeper extends Component {
 
   onNewGame = () => {
     this.changeDialog();
-    console.log("heyy");
-    this.setState({ rows: 20 });
+    this.setState(
+      {
+        rows: 20,
+        columns: 20,
+        mines: 100,
+      },
+      () => {
+        this.game.current.reset();
+      }
+    );
   };
 
   render() {
@@ -36,6 +48,7 @@ class Minesweeper extends Component {
         ></Dialog>
 
         <Game
+          ref={this.game}
           rows={this.state.rows}
           columns={this.state.columns}
           mines={this.state.mines}

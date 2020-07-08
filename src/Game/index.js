@@ -15,12 +15,16 @@ class Game extends Component {
       flags: props.flags,
       game: "pending",
     };
-
-    this.savedState = this.state;
   }
 
   componentWillMount() {
     this.intervals = [];
+  }
+
+  componentDidUpdate() {
+    if (this.state.game === "running") {
+      this.winning();
+    }
   }
 
   tick = () => {
@@ -34,15 +38,19 @@ class Game extends Component {
     this.intervals.push(setInterval(fn, t));
   };
 
-  componentDidUpdate() {
-    if (this.state.game === "running") {
-      this.winning();
-    }
-  }
-
   reset = () => {
     this.intervals.map(clearInterval);
-    this.setState({ ...this.savedState }, () => {
+    this.stateNew = {
+      openedCells: 0,
+      time: 0,
+      rows: this.props.rows,
+      columns: this.props.columns,
+      mines: this.props.mines,
+      flags: this.props.flags,
+      game: "pending",
+    };
+
+    this.setState({ ...this.stateNew }, () => {
       this.intervals = [];
     });
   };
