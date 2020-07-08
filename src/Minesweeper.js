@@ -14,6 +14,11 @@ class Minesweeper extends Component {
       : this.setState({ isOpen: true });
   };
 
+  onNewGame = () => {
+    
+    this.changeDialog();
+  };
+
   render() {
     return (
       <div>
@@ -22,6 +27,7 @@ class Minesweeper extends Component {
           <Dialog
             isOpen={this.state.isOpen}
             onClose={(e) => this.setState({ isOpen: false })}
+            onNewGame={this.onNewGame}
           ></Dialog>
         </div>
 
