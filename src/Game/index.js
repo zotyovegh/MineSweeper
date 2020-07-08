@@ -39,7 +39,6 @@ class Game extends Component {
   };
 
   reset = () => {
-    this.intervals.map(clearInterval);
     this.stateNew = {
       openedCells: 0,
       time: 0,
@@ -49,6 +48,7 @@ class Game extends Component {
       flags: this.props.flags,
       game: "pending",
     };
+    this.intervals.map(clearInterval);
 
     this.setState({ ...this.stateNew }, () => {
       this.intervals = [];

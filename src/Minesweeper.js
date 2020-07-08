@@ -11,7 +11,6 @@ class Minesweeper extends Component {
       rows: 10,
       columns: 10,
       mines: 15,
-      flags: 15,
     };
     this.game = createRef();
   }
@@ -26,7 +25,7 @@ class Minesweeper extends Component {
     this.changeDialog();
     this.setState(
       {
-        rows: 20,
+        rows: 15,
         columns: 20,
         mines: 100,
       },
@@ -52,7 +51,7 @@ class Minesweeper extends Component {
           rows={this.state.rows}
           columns={this.state.columns}
           mines={this.state.mines}
-          flags={this.state.flags}
+          flags={this.state.mines}
         />
       </div>
     );
