@@ -5,12 +5,19 @@ import "./index.css";
 
 class Minesweeper extends Component {
   state = {
-    IsOpen: false,
+    isOpen: true,
   };
+
+  changeDialog = () => {
+    this.state.isOpen
+      ? this.setState({ isOpen: false })
+      : this.setState({ isOpen: true });
+  };
+
   render() {
     return (
       <div>
-        <button onClick={(e) => this.setState({ isOpen: true })}>Game</button>
+        <button onClick={this.changeDialog}>Game</button>
         <div>
           <Dialog
             isOpen={this.state.isOpen}
