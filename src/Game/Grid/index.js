@@ -50,7 +50,7 @@ class Grid extends Component {
     return grid;
   };
 
-  tryPress = (cell) => {
+  click = (cell) => {
     if (this.props.game === "ended" || this.props.game === "won") {
       return;
     }
@@ -72,7 +72,7 @@ class Grid extends Component {
             rows: newRows,
           },
           () => {
-            this.tryPress(cell);
+            this.click(cell);
           }
         );
       } else {
@@ -84,7 +84,7 @@ class Grid extends Component {
           this.setState({ rows });
 
           if (!currentCell.hasMine && countNeighbours === 0) {
-            this.findEmptyCell(cell);
+            this.countEmptyCell(cell);
           }
 
           if (currentCell.hasMine && this.props.openedCells !== 0) {
@@ -120,7 +120,7 @@ class Grid extends Component {
     return total;
   };
 
-  findEmptyCell = (cell) => {
+  countEmptyCell = (cell) => {
     //Spin through the neighbouring cells just as in the before method
     let rows = this.state.rows;
     for (let row = -1; row <= 1; row++) {
@@ -136,7 +136,7 @@ class Grid extends Component {
               !rows[rowOff][colOff].hasMine &&
               !rows[rowOff][colOff].isPressed
             ) {
-              this.tryPress(rows[rowOff][colOff]);
+              this.click(rows[rowOff][colOff]);
             }
           }
         }
@@ -162,7 +162,7 @@ class Grid extends Component {
         <GridRow
           cells={row}
           key={index}
-          tryPress={this.tryPress}
+          click={this.click}
           flag={this.flag}
         />
       );

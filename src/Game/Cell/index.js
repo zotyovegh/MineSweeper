@@ -7,7 +7,7 @@ const Cell = (props) => {
         return (
           <div
             className="bomb cell"
-            onClick={() => props.tryPress(props.data)}
+            onClick={() => props.click(props.data)}
             onContextMenu={(e) => {
               e.preventDefault();
             }}
@@ -17,7 +17,7 @@ const Cell = (props) => {
         return (
           <div
             className="pressed cell"
-            onClick={() => props.tryPress(props.data)}
+            onClick={() => props.click(props.data)}
             onContextMenu={(e) => {
               e.preventDefault();
               props.flag(props.data);
@@ -28,7 +28,7 @@ const Cell = (props) => {
         return (
           <div
             className="pressed cell"
-            onClick={() => props.tryPress(props.data)}
+            onClick={() => props.click(props.data)}
             onContextMenu={(e) => {
               e.preventDefault();
               props.flag(props.data);
@@ -42,7 +42,7 @@ const Cell = (props) => {
       return (
         <div
           className="flagged cell"
-          onClick={() => props.tryPress(props.data)}
+          onClick={() => props.click(props.data)}
           onContextMenu={(e) => {
             e.preventDefault();
             props.flag(props.data);
@@ -53,7 +53,7 @@ const Cell = (props) => {
       return (
         <div
           className="cell"
-          onClick={() => props.tryPress(props.data)}
+          onClick={() => props.click(props.data)}
           onContextMenu={(e) => {
             e.preventDefault();
             props.flag(props.data);

@@ -1,4 +1,5 @@
 import React, { Component, createRef } from "react";
+
 import Game from "../../minesweeper/src/Game";
 import Dialog from "./Dialog";
 import "./index.css";
@@ -10,7 +11,7 @@ class Minesweeper extends Component {
       isOpen: false,
       rows: 10,
       columns: 10,
-      mines: 15,
+      mines: 5,
     };
     this.game = createRef();
   }
@@ -25,9 +26,9 @@ class Minesweeper extends Component {
     this.changeDialog();
     this.setState(
       {
-        rows: 15,
+        rows: 20,
         columns: 20,
-        mines: 100,
+        mines: 13,
       },
       () => {
         this.game.current.reset();
