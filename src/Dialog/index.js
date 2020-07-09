@@ -5,10 +5,10 @@ class Dialog extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      radio: "",
-      customrows: 4,
-      customcolumns: 4,
-      custommines: 1,
+      radio: "custom",
+      customrows: 2,
+      customcolumns: 6,
+      custommines: 2,
     };
 
     this.onChange = this.onChange.bind(this);
@@ -119,7 +119,7 @@ class Dialog extends Component {
               </td>
               <td>
                 <input
-                  type="text"
+                  type="number"
                   value={this.state.customrows}
                   onChange={this.onCustomRowChange}
                   className="custom"
@@ -127,7 +127,7 @@ class Dialog extends Component {
               </td>
               <td>
                 <input
-                  type="text"
+                  type="number"
                   value={this.state.customcolumns}
                   onChange={this.onCustomColumnChange}
                   className="custom"
@@ -135,7 +135,7 @@ class Dialog extends Component {
               </td>
               <td>
                 <input
-                  type="text"
+                  type="number"
                   value={this.state.custommines}
                   onChange={this.onCustomMinesChange}
                   className="custom"
@@ -156,6 +156,16 @@ class Dialog extends Component {
     return <div>{dialog}</div>;
   }
 
+  checkNumber = (num, min, max) => {
+    if (num > max) {
+      return max;
+    } else if (num < min) {
+      return min;
+    } else {
+      return num;
+    }
+  };
+
   newGame = () => {
     if (this.state.radio === "beginner") {
       this.props.onNewGame(9, 9, 10);
@@ -164,12 +174,17 @@ class Dialog extends Component {
     } else if (this.state.radio === "expert") {
       this.props.onNewGame(16, 30, 99);
     } else if (this.state.radio === "custom") {
-      console.log(this.state.customrows);
-      this.props.onNewGame(
-        this.state.customrows,
-        this.state.customcolumns,
-        this.state.custommines
-      );
+      let crow = this.checkNumber(this.state.customrows, 2, 30);
+      let ccol = this.checkNumber(this.state.customcolumns, 6, 45);
+      let cmine = this.checkNumber(this.state.custommines, 3, 800);
+      let cmineValid = crow * ccol > cmine ? cmine : crow * ccol - 1;
+      console.log(cmineValid);
+      this.setState({
+        customrows: crow,
+        customcolumns: ccol,
+        custommines: cmineValid,
+      });
+      this.props.onNewGame(crow, ccol, cmineValid);
     }
   };
 }
