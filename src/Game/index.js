@@ -9,12 +9,14 @@ class Game extends Component {
     this.state = {
       openedCells: 0,
       time: 0,
-      rows: props.rows,
-      columns: props.columns,
-      mines: props.mines,
-      flags: props.flags,
+      rows: 15,
+      columns: 15,
+      mines: 20,
+      flags: 20,
       game: "pending",
     };
+
+    this.newState = this.state;
   }
 
   componentWillMount() {
@@ -39,18 +41,9 @@ class Game extends Component {
   };
 
   reset = () => {
-    this.stateNew = {
-      openedCells: 0,
-      time: 0,
-      rows: this.props.rows,
-      columns: this.props.columns,
-      mines: this.props.mines,
-      flags: this.props.flags,
-      game: "pending",
-    };
     this.intervals.map(clearInterval);
 
-    this.setState({ ...this.stateNew }, () => {
+    this.setState({ ...this.newState }, () => {
       this.intervals = [];
     });
   };
