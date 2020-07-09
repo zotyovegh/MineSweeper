@@ -2,6 +2,21 @@ import React, { Component } from "react";
 import "./index.css";
 
 class Dialog extends Component {
+  constructor(props) {
+    super();
+    this.state = {
+      radio: "beginner",
+    };
+
+    this.onRadioChange = this.onRadioChange.bind(this);
+  }
+
+  onRadioChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+  }
+
   render() {
     let dialog = (
       <div className="dialogStyles">
@@ -23,7 +38,14 @@ class Dialog extends Component {
             </tr>
             <tr>
               <td>
-                <input type="radio" value="beginner" name="hardness" /> Beginner
+                <input
+                  type="radio"
+                  onChange={this.onRadioChange}
+                  value="beginner"
+                  name="radio"
+                  checked={this.state.radio === "beginner"}
+                />{" "}
+                Beginner
               </td>
               <td>9</td>
               <td>9</td>
@@ -32,7 +54,13 @@ class Dialog extends Component {
 
             <tr>
               <td>
-                <input type="radio" value="intermediate" name="hardness" />{" "}
+                <input
+                  type="radio"
+                  onChange={this.onRadioChange}
+                  value="intermediate"
+                  name="radio"
+                  checked={this.state.radio === "intermediate"}
+                />{" "}
                 Intermediate
               </td>
               <td>16</td>
@@ -42,7 +70,14 @@ class Dialog extends Component {
 
             <tr>
               <td>
-                <input type="radio" value="expert" name="hardness" /> Expert
+                <input
+                  type="radio"
+                  onChange={this.onRadioChange}
+                  value="expert"
+                  name="radio"
+                  checked={this.state.radio === "expert"}
+                />{" "}
+                Expert
               </td>
               <td>16</td>
               <td>30</td>
@@ -51,7 +86,13 @@ class Dialog extends Component {
 
             <tr>
               <td>
-                <input type="radio" value="intermediate" name="hardness" />{" "}
+                <input
+                  type="radio"
+                  onChange={this.onRadioChange}
+                  value="custom"
+                  name="radio"
+                  checked={this.state.radio === "custom"}
+                />{" "}
                 Custom
               </td>
               <td>
@@ -66,7 +107,9 @@ class Dialog extends Component {
             </tr>
           </tbody>
         </table>
-        <button id="newGame" onClick={this.props.onNewGame}>New Game</button>
+        <button id="newGame" onClick={this.newGame}>
+          New Game
+        </button>
       </div>
     );
 
@@ -75,5 +118,15 @@ class Dialog extends Component {
     }
     return <div>{dialog}</div>;
   }
+
+  newGame = () => {
+    if (this.state.radio === "beginner") {
+      this.props.onNewGame(9, 9, 10);
+    } else if (this.state.radio === "intermediate") {
+      this.props.onNewGame(16, 16, 40);
+    } else if (this.state.radio === "expert") {
+      this.props.onNewGame(16, 30, 99);
+    }
+  };
 }
 export default Dialog;

@@ -22,13 +22,13 @@ class Minesweeper extends Component {
       : this.setState({ isOpen: true });
   };
 
-  onNewGame = () => {
+  onNewGame = (recrows, reccolumns, recmines) => {
     this.changeDialog();
     this.setState(
       {
-        rows: 7,
-        columns: 7,
-        mines: 7,
+        rows: recrows,
+        columns: reccolumns,
+        mines: recmines,
       },
       () => {
         this.game.current.reset();
