@@ -170,17 +170,18 @@ class Dialog extends Component {
     if (row * col > mine) {
       return mine;
     } else {
-      return Math.round(row * col * 0.8 * 10) / 10;
+      var num = Math.round(row * col * 0.8 * 10) / 10;
+      return num < 800 ? num : 800;
     }
   };
 
   newGame = () => {
     if (this.state.radio === "beginner") {
-      this.props.onNewGame(2, 6, 3);
+      this.props.onNewGame(9, 9, 10);
     } else if (this.state.radio === "intermediate") {
-      this.props.onNewGame(4, 6, 10);
+      this.props.onNewGame(16, 16, 40);
     } else if (this.state.radio === "expert") {
-      this.props.onNewGame(9, 10, 20);
+      this.props.onNewGame(16, 30, 99);
     } else if (this.state.radio === "custom") {
       const crow = this.checkNumber(this.state.customrows, 2, 30);
       const ccol = this.checkNumber(this.state.customcolumns, 6, 45);
