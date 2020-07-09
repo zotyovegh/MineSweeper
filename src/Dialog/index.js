@@ -5,10 +5,10 @@ class Dialog extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      radio: "custom",
-      customrows: 10,
-      customcolumns: 10,
-      custommines: 4,
+      radio: this.checkCategory(props),
+      customrows: props.rows,
+      customcolumns: props.columns,
+      custommines: props.mines,
     };
 
     this.onChange = this.onChange.bind(this);
@@ -16,6 +16,18 @@ class Dialog extends Component {
     this.onCustomColumnChange = this.onCustomColumnChange.bind(this);
     this.onCustomMinesChange = this.onCustomMinesChange.bind(this);
   }
+
+  checkCategory = (props) => {
+    if (props.rows === 9 && props.columns === 9 && props.mines === 10) {
+      return "beginner";
+    } else if (props.rows === 16 && props.columns === 16 && props.mines === 40) {
+      return "intermediate";
+    } else if (props.rows === 16 && props.columns === 30 && props.mines === 99) {
+      return "expert";
+    }else{
+      return "custom"
+    }
+  };
 
   onChange(e) {
     this.setState({

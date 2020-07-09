@@ -9,9 +9,10 @@ class Minesweeper extends Component {
     super();
     this.state = {
       isOpen: false,
-      rows: 10,
-      columns: 10,
-      mines: 5,
+      //beginner
+      rows: 9,
+      columns: 9,
+      mines: 10,
     };
     this.game = createRef();
   }
@@ -45,6 +46,9 @@ class Minesweeper extends Component {
           isOpen={this.state.isOpen}
           onClose={(e) => this.setState({ isOpen: false })}
           onNewGame={this.onNewGame}
+          rows={this.state.rows}
+          columns={this.state.columns}
+          mines={this.state.mines}
         ></Dialog>
 
         <Game

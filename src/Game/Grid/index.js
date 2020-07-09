@@ -15,14 +15,11 @@ class Grid extends Component {
       this.props.openedCells > nextProps.openedCells ||
       this.props.openedCells === 0
     ) {
-      console.log("b");
       this.setState({
         rows: this.createGrid(nextProps),
       });
     }
   }
-
-  reset = () => {};
 
   createGrid = (props) => {
     let grid = [];
