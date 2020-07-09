@@ -24,7 +24,16 @@ class Minesweeper extends Component {
 
   onNewGame = () => {
     this.changeDialog();
-    
+    this.setState(
+      {
+        rows: 7,
+        columns: 7,
+        mines: 7,
+      },
+      () => {
+        this.game.current.reset();
+      }
+    );
   };
 
   render() {

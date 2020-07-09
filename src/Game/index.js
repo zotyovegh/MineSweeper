@@ -4,20 +4,18 @@ import Grid from "./Grid";
 import Header from "./Header";
 
 class Game extends Component {
-  constructor(props) {
-    super();
-    this.state = {
+  
+    state = {
       openedCells: 0,
       time: 0,
-      rows: 15,
-      columns: 15,
-      mines: 20,
-      flags: 20,
+      rows: this.props.rows,
+      columns: this.props.columns,
+      mines: this.props.mines,
+      flags: this.props.flags,
       game: "pending",
     };
 
-    this.newState = this.state;
-  }
+  
 
   componentWillMount() {
     this.intervals = [];
@@ -41,6 +39,16 @@ class Game extends Component {
   };
 
   reset = () => {
+    this.newState = {
+      openedCells: 0,
+      time: 0,
+      rows: this.props.rows,
+      columns: this.props.columns,
+      mines: this.props.mines,
+      flags: this.props.flags,
+      game: "pending",
+    };
+
     this.intervals.map(clearInterval);
 
     this.setState({ ...this.newState }, () => {

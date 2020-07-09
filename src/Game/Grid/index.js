@@ -7,15 +7,22 @@ class Grid extends Component {
     this.state = {
       rows: this.createGrid(props),
     };
+    this.isNew = false;
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.openedCells > nextProps.openedCells) {
+    if (
+      this.props.openedCells > nextProps.openedCells ||
+      this.props.openedCells === 0
+    ) {
+      console.log("b");
       this.setState({
         rows: this.createGrid(nextProps),
       });
     }
   }
+
+  reset = () => {};
 
   createGrid = (props) => {
     let grid = [];
@@ -146,7 +153,11 @@ class Grid extends Component {
 
   flag = (cell) => {
     let rows = this.state.rows;
-    if (this.props.game === "ended" || this.props.game === "won") {
+    if (
+      this.props.game === "ended" ||
+      this.props.game === "won" ||
+      this.props.game !== "running"
+    ) {
       return;
     } else if (!cell.isPressed) {
       cell.hasFlag = !cell.hasFlag;
@@ -159,12 +170,7 @@ class Grid extends Component {
     //Create rows
     let rows = this.state.rows.map((row, index) => {
       return (
-        <GridRow
-          cells={row}
-          key={index}
-          click={this.click}
-          flag={this.flag}
-        />
+        <GridRow cells={row} key={index} click={this.click} flag={this.flag} />
       );
     });
     return <div className="grid">{rows}</div>;
