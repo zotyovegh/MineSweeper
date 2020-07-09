@@ -6,9 +6,9 @@ class Dialog extends Component {
     super(props);
     this.state = {
       radio: "custom",
-      customrows: 2,
-      customcolumns: 6,
-      custommines: 2,
+      customrows: 10,
+      customcolumns: 10,
+      custommines: 4,
     };
 
     this.onChange = this.onChange.bind(this);
@@ -166,19 +166,26 @@ class Dialog extends Component {
     }
   };
 
+  validateMine = (row, col, mine) => {
+    if (row * col > mine) {
+      return mine;
+    } else {
+      return Math.round(row * col * 0.8 * 10) / 10;
+    }
+  };
+
   newGame = () => {
     if (this.state.radio === "beginner") {
-      this.props.onNewGame(9, 9, 10);
+      this.props.onNewGame(2, 6, 3);
     } else if (this.state.radio === "intermediate") {
-      this.props.onNewGame(16, 16, 40);
+      this.props.onNewGame(4, 6, 10);
     } else if (this.state.radio === "expert") {
-      this.props.onNewGame(16, 30, 99);
+      this.props.onNewGame(9, 10, 20);
     } else if (this.state.radio === "custom") {
-      let crow = this.checkNumber(this.state.customrows, 2, 30);
-      let ccol = this.checkNumber(this.state.customcolumns, 6, 45);
-      let cmine = this.checkNumber(this.state.custommines, 3, 800);
-      let cmineValid = crow * ccol > cmine ? cmine : crow * ccol - 1;
-      console.log(cmineValid);
+      const crow = this.checkNumber(this.state.customrows, 2, 30);
+      const ccol = this.checkNumber(this.state.customcolumns, 6, 45);
+      const cmine = this.checkNumber(this.state.custommines, 3, 800);
+      const cmineValid = this.validateMine(crow, ccol, cmine);
       this.setState({
         customrows: crow,
         customcolumns: ccol,
