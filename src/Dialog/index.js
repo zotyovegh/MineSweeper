@@ -3,17 +3,39 @@ import "./index.css";
 
 class Dialog extends Component {
   constructor(props) {
-    super();
+    super(props);
     this.state = {
-      radio: "beginner",
+      radio: "",
+      customrows: 4,
+      customcolumns: 4,
+      custommines: 1,
     };
 
-    this.onRadioChange = this.onRadioChange.bind(this);
+    this.onChange = this.onChange.bind(this);
+    this.onCustomRowChange = this.onCustomRowChange.bind(this);
+    this.onCustomColumnChange = this.onCustomColumnChange.bind(this);
+    this.onCustomMinesChange = this.onCustomMinesChange.bind(this);
   }
 
-  onRadioChange(e) {
+  onChange(e) {
     this.setState({
       [e.target.name]: e.target.value,
+    });
+  }
+
+  onCustomRowChange(e) {
+    this.setState({
+      customrows: e.target.value,
+    });
+  }
+  onCustomColumnChange(e) {
+    this.setState({
+      customcolumns: e.target.value,
+    });
+  }
+  onCustomMinesChange(e) {
+    this.setState({
+      custommines: e.target.value,
     });
   }
 
@@ -40,7 +62,7 @@ class Dialog extends Component {
               <td>
                 <input
                   type="radio"
-                  onChange={this.onRadioChange}
+                  onChange={this.onChange}
                   value="beginner"
                   name="radio"
                   checked={this.state.radio === "beginner"}
@@ -56,7 +78,7 @@ class Dialog extends Component {
               <td>
                 <input
                   type="radio"
-                  onChange={this.onRadioChange}
+                  onChange={this.onChange}
                   value="intermediate"
                   name="radio"
                   checked={this.state.radio === "intermediate"}
@@ -72,7 +94,7 @@ class Dialog extends Component {
               <td>
                 <input
                   type="radio"
-                  onChange={this.onRadioChange}
+                  onChange={this.onChange}
                   value="expert"
                   name="radio"
                   checked={this.state.radio === "expert"}
@@ -88,7 +110,7 @@ class Dialog extends Component {
               <td>
                 <input
                   type="radio"
-                  onChange={this.onRadioChange}
+                  onChange={this.onChange}
                   value="custom"
                   name="radio"
                   checked={this.state.radio === "custom"}
@@ -96,13 +118,28 @@ class Dialog extends Component {
                 Custom
               </td>
               <td>
-                <input type="text" value="20" className="custom"></input>
+                <input
+                  type="text"
+                  value={this.state.customrows}
+                  onChange={this.onCustomRowChange}
+                  className="custom"
+                ></input>
               </td>
               <td>
-                <input type="text" value="30" className="custom"></input>
+                <input
+                  type="text"
+                  value={this.state.customcolumns}
+                  onChange={this.onCustomColumnChange}
+                  className="custom"
+                ></input>
               </td>
               <td>
-                <input type="text" value="145" className="custom"></input>
+                <input
+                  type="text"
+                  value={this.state.custommines}
+                  onChange={this.onCustomMinesChange}
+                  className="custom"
+                ></input>
               </td>
             </tr>
           </tbody>
@@ -126,6 +163,13 @@ class Dialog extends Component {
       this.props.onNewGame(16, 16, 40);
     } else if (this.state.radio === "expert") {
       this.props.onNewGame(16, 30, 99);
+    } else if (this.state.radio === "custom") {
+      console.log(this.state.customrows);
+      this.props.onNewGame(
+        this.state.customrows,
+        this.state.customcolumns,
+        this.state.custommines
+      );
     }
   };
 }
