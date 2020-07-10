@@ -92,11 +92,26 @@ class Grid extends Component {
           }
 
           if (currentCell.hasMine && this.props.openedCells !== 0) {
+            this.revealBombs();
+
             this.props.finishGame();
           }
         }
       }
     });
+  };
+
+  revealBombs = () => {
+    let grid = this.state.rows;
+    for (let row = 0; row < grid.length; row++) {
+      for (let col = 0; col < grid[0].length; col++) {
+        let cell = grid[row][col];
+        if (cell.hasMine && !cell.isPressed && !cell.hasFlag) {
+          console.log("hey");
+          cell.isPressed = true;
+        }
+      }
+    }
   };
 
   countNeighbours = (cell) => {
