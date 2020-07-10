@@ -106,7 +106,7 @@ class Grid extends Component {
     for (let row = 0; row < grid.length; row++) {
       for (let col = 0; col < grid[0].length; col++) {
         let cell = grid[row][col];
-        if (cell.hasMine && !cell.isPressed && !cell.hasFlag) {
+        if (cell.hasMine && !cell.isPressed) {
           console.log("hey");
           cell.isPressed = true;
         }
