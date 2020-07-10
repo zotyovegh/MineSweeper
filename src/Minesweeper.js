@@ -40,7 +40,7 @@ class Minesweeper extends Component {
   render() {
     return (
       <div>
-        <button onClick={this.changeDialog}>Game</button>
+        <button onClick={this.changeDialog}>Difficulty</button>
 
         <Dialog
           isOpen={this.state.isOpen}

@@ -87,7 +87,7 @@ class Dialog extends Component {
         <table>
           <tbody>
             <tr>
-              <td id="tableTitle">Game</td>
+              <td id="tableTitle">Difficulty</td>
               <td colSpan="3">
                 <button className="closeButton" onClick={this.props.onClose}>
                   x
@@ -108,8 +108,9 @@ class Dialog extends Component {
                   value="beginner"
                   name="radio"
                   checked={this.state.radio === "beginner"}
+                  id="begi"
                 />{" "}
-                Beginner
+                <label htmlFor="begi">Beginner</label>
               </td>
               <td>9</td>
               <td>9</td>
@@ -124,8 +125,9 @@ class Dialog extends Component {
                   value="intermediate"
                   name="radio"
                   checked={this.state.radio === "intermediate"}
+                  id="inter"
                 />{" "}
-                Intermediate
+                <label htmlFor="inter">Intermediate</label>
               </td>
               <td>16</td>
               <td>16</td>
@@ -140,8 +142,9 @@ class Dialog extends Component {
                   value="expert"
                   name="radio"
                   checked={this.state.radio === "expert"}
+                  id="exp"
                 />{" "}
-                Expert
+                <label htmlFor="exp">Expert</label>
               </td>
               <td>16</td>
               <td>30</td>
@@ -156,8 +159,9 @@ class Dialog extends Component {
                   value="custom"
                   name="radio"
                   checked={this.state.radio === "custom"}
+                  id="cust"
                 />{" "}
-                Custom
+                <label htmlFor="cust">Custom</label>
               </td>
               <td>
                 <input
