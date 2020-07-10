@@ -20,12 +20,20 @@ class Dialog extends Component {
   checkCategory = (props) => {
     if (props.rows === 9 && props.columns === 9 && props.mines === 10) {
       return "beginner";
-    } else if (props.rows === 16 && props.columns === 16 && props.mines === 40) {
+    } else if (
+      props.rows === 16 &&
+      props.columns === 16 &&
+      props.mines === 40
+    ) {
       return "intermediate";
-    } else if (props.rows === 16 && props.columns === 30 && props.mines === 99) {
+    } else if (
+      props.rows === 16 &&
+      props.columns === 30 &&
+      props.mines === 99
+    ) {
       return "expert";
-    }else{
-      return "custom"
+    } else {
+      return "custom";
     }
   };
 
@@ -180,7 +188,7 @@ class Dialog extends Component {
 
   validateMine = (row, col, mine) => {
     if (row * col > mine) {
-      return mine;
+      return Math.round(mine * 10) / 10;
     } else {
       var num = Math.round(row * col * 0.8 * 10) / 10;
       return num < 800 ? num : 800;
