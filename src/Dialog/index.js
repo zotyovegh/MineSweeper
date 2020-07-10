@@ -6,9 +6,10 @@ class Dialog extends Component {
     super(props);
     this.state = {
       radio: this.checkCategory(props),
-      customrows: props.rows,
-      customcolumns: props.columns,
-      custommines: props.mines,
+      customrows: 13,
+      customcolumns: 13,
+      custommines: 30,
+      isCustomSelected: this.selectedCheck(props),
     };
 
     this.onChange = this.onChange.bind(this);
@@ -16,6 +17,18 @@ class Dialog extends Component {
     this.onCustomColumnChange = this.onCustomColumnChange.bind(this);
     this.onCustomMinesChange = this.onCustomMinesChange.bind(this);
   }
+
+  selectedCheck = (props) => {
+    if (
+      (props.rows === 9 && props.columns === 9 && props.mines === 10) ||
+      (props.rows === 16 && props.columns === 16 && props.mines === 40) ||
+      (props.rows === 16 && props.columns === 30 && props.mines === 99)
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  };
 
   checkCategory = (props) => {
     if (props.rows === 9 && props.columns === 9 && props.mines === 10) {
@@ -38,9 +51,18 @@ class Dialog extends Component {
   };
 
   onChange(e) {
-    this.setState({
-      [e.target.name]: e.target.value,
-    });
+    console.log(e.target.value);
+    if (e.target.value === "custom") {
+      this.setState({
+        isCustomSelected: false,
+        [e.target.name]: e.target.value,
+      });
+    } else {
+      this.setState({
+        isCustomSelected: true,
+        [e.target.name]: e.target.value,
+      });
+    }
   }
 
   onCustomRowChange(e) {
@@ -143,6 +165,7 @@ class Dialog extends Component {
                   value={this.state.customrows}
                   onChange={this.onCustomRowChange}
                   className="custom"
+                  disabled={this.state.isCustomSelected}
                 ></input>
               </td>
               <td>
@@ -151,6 +174,7 @@ class Dialog extends Component {
                   value={this.state.customcolumns}
                   onChange={this.onCustomColumnChange}
                   className="custom"
+                  disabled={this.state.isCustomSelected}
                 ></input>
               </td>
               <td>
@@ -159,6 +183,7 @@ class Dialog extends Component {
                   value={this.state.custommines}
                   onChange={this.onCustomMinesChange}
                   className="custom"
+                  disabled={this.state.isCustomSelected}
                 ></input>
               </td>
             </tr>

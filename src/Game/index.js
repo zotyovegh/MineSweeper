@@ -4,18 +4,15 @@ import Grid from "./Grid";
 import Header from "./Header";
 
 class Game extends Component {
-  
-    state = {
-      openedCells: 0,
-      time: 0,
-      rows: this.props.rows,
-      columns: this.props.columns,
-      mines: this.props.mines,
-      flags: this.props.flags,
-      game: "pending",
-    };
-
-  
+  state = {
+    openedCells: 0,
+    time: 0,
+    rows: this.props.rows,
+    columns: this.props.columns,
+    mines: this.props.mines,
+    flags: this.props.flags,
+    game: "pending",
+  };
 
   componentWillMount() {
     this.intervals = [];
