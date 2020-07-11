@@ -85,7 +85,9 @@ class Grid extends Component {
           currentCell.isPressed = true;
           currentCell.minesAround = countNeighbours;
 
-          this.setState({ rows });
+          this.setState({ rows }, () => {
+            this.winCheck();
+          });
 
           if (!currentCell.hasMine && countNeighbours === 0) {
             this.countEmptyCell(cell);
@@ -101,13 +103,30 @@ class Grid extends Component {
     });
   };
 
+  winCheck = () => {
+    let grid = this.state.rows;
+    if (
+      this.props.mines + this.props.openedCells >=
+      this.props.columns * this.props.rows
+    ) {
+      for (let row = 0; row < grid.length; row++) {
+        for (let col = 0; col < grid[0].length; col++) {
+          let cell = grid[row][col];
+          if (cell.hasMine && cell.isPressed) {
+            return;
+          }
+        }
+      }
+      this.props.winning();
+    }
+  };
+
   revealBombs = () => {
     let grid = this.state.rows;
     for (let row = 0; row < grid.length; row++) {
       for (let col = 0; col < grid[0].length; col++) {
         let cell = grid[row][col];
         if (cell.hasMine && !cell.isPressed) {
-          console.log("hey");
           cell.isPressed = true;
         }
       }

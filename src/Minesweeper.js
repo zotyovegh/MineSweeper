@@ -12,7 +12,7 @@ class Minesweeper extends Component {
       //beginner
       rows: 9,
       columns: 9,
-      mines: 4,
+      mines: 10,
     };
     this.game = createRef();
   }

@@ -7,14 +7,19 @@ class WinningDialog extends Component {
     this.state = {};
   }
 
+  /*
+  TEMPORARILY NOT USED BUTTON
+   <button className="buttons" id="save" onClick={this.props.onSaveTime}>
+            Save my time
+          </button>
+          */
+
   render() {
     let winningDialog = (
       <div className="winningStyles">
         {this.props.time}
         <div>
-          <button className="buttons" id="save" onClick={this.props.onSaveTime}>
-            Save my time
-          </button>
+         
           <button className="buttons" id="newgame" onClick={this.props.onNewGame}>
             New Game
           </button>
