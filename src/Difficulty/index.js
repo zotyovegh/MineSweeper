@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./index.css";
 
-class Dialog extends Component {
+class Difficulty extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -82,8 +82,8 @@ class Dialog extends Component {
   }
 
   render() {
-    let dialog = (
-      <div className="dialogStyles">
+    let difficulty = (
+      <div className="difficultyStyles">
         <table>
           <tbody>
             <tr>
@@ -200,9 +200,9 @@ class Dialog extends Component {
     );
 
     if (!this.props.isOpen) {
-      dialog = null;
+      difficulty = null;
     }
-    return <div>{dialog}</div>;
+    return <div>{difficulty}</div>;
   }
 
   checkNumber = (num, min, max) => {
@@ -245,4 +245,4 @@ class Dialog extends Component {
     }
   };
 }
-export default Dialog;
+export default Difficulty;

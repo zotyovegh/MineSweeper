@@ -1,4 +1,4 @@
-.dialogStyles {
+.difficultyStyles {
   width: 430px;
   height: 250px;
   max-width: 100%;
@@ -14,6 +14,7 @@
   display: flex;
   flex-direction: column;
   border: 2px solid black;
+  font-size: 25px;
 }
 
 .closeButton {
@@ -26,10 +27,6 @@
   font-size: 20px;
   align-self: flex-end;
   margin-right: 5px;
-}
-
-.dialogStyles {
-  font-size: 25px;
 }
 
 .custom {
