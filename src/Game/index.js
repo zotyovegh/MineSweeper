@@ -54,6 +54,7 @@ class Game extends Component {
     this.setState({ ...this.newState }, () => {
       this.intervals = [];
     });
+    this.setState({ isWinningDialog: false });
   };
 
   finishGame = () => {
@@ -84,15 +85,21 @@ class Game extends Component {
   };
 
   winning = () => {
+    
     if (
       this.state.mines + this.state.openedCells >=
       this.state.columns * this.state.rows
     ) {
+      console.log(this.state.openedCells)
       this.setState({
         game: "won",
-        isWinningDialog: true
+        isWinningDialog: true,
       });
     }
+  };
+
+  onSaveTime = () => {
+    this.setState({isWinningDialog: false})
   };
 
   render() {
@@ -116,6 +123,9 @@ class Game extends Component {
         <WinningDialog
           isOpen={this.state.isWinningDialog}
           onClose={(e) => this.setState({ isWinningDialog: false })}
+          onNewGame={this.reset}
+          onSaveTime={this.onSaveTime}
+          time={this.state.time}
         ></WinningDialog>
       </div>
     );

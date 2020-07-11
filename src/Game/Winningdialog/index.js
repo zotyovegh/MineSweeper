@@ -10,15 +10,15 @@ class WinningDialog extends Component {
   render() {
     let winningDialog = (
       <div className="winningStyles">
-        <p>test</p>
+        {this.props.time}
         <div>
-          <button className="buttons" id="save">
+          <button className="buttons" id="save" onClick={this.props.onSaveTime}>
             Save my time
           </button>
-          <button className="buttons" id="newgame">
+          <button className="buttons" id="newgame" onClick={this.props.onNewGame}>
             New Game
           </button>
-          <button className="buttons" id="cancel">
+          <button className="buttons" id="cancel" onClick={this.props.onClose}>
             Cancel
           </button>
         </div>
