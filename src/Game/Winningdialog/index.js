@@ -11,7 +11,17 @@ class WinningDialog extends Component {
     let winningDialog = (
       <div className="winningStyles">
         <p>test</p>
-        <button id="save">Save</button>
+        <div>
+          <button className="buttons" id="save">
+            Save my time
+          </button>
+          <button className="buttons" id="newgame">
+            New Game
+          </button>
+          <button className="buttons" id="cancel">
+            Cancel
+          </button>
+        </div>
       </div>
     );
 
