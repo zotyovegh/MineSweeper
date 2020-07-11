@@ -10,6 +10,7 @@ class WinningDialog extends Component {
   render() {
     let winningDialog = (
       <div className="winningStyles">
+        <p>test</p>
         <button id="save">Save</button>
       </div>
     );

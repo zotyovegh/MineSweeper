@@ -3,6 +3,8 @@ import "./index.css";
 import Grid from "./Grid";
 import Header from "./Header";
 
+import WinningDialog from "./Winningdialog";
+
 class Game extends Component {
   state = {
     openedCells: 0,
@@ -12,6 +14,7 @@ class Game extends Component {
     mines: this.props.mines,
     flags: this.props.flags,
     game: "pending",
+    isWinningDialog: false,
   };
 
   componentWillMount() {
@@ -87,6 +90,7 @@ class Game extends Component {
     ) {
       this.setState({
         game: "won",
+        isWinningDialog: true
       });
     }
   };
@@ -109,6 +113,10 @@ class Game extends Component {
           onCellInspect={this.handleCellInspect}
           finishGame={this.finishGame}
         />
+        <WinningDialog
+          isOpen={this.state.isWinningDialog}
+          onClose={(e) => this.setState({ isWinningDialog: false })}
+        ></WinningDialog>
       </div>
     );
   }
