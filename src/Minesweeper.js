@@ -3,6 +3,7 @@ import React, { Component, createRef } from "react";
 import Game from "../../minesweeper/src/Game";
 import Difficulty from "./Difficulty";
 import "./index.css";
+import Highscore from "./Highscore";
 
 class Minesweeper extends Component {
   constructor(props) {
@@ -58,6 +59,7 @@ class Minesweeper extends Component {
           mines={this.state.mines}
           flags={this.state.mines}
         />
+        <Highscore />
       </div>
     );
   }
