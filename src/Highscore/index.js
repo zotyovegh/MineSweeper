@@ -1,5 +1,11 @@
 import React, { Component } from "react";
 import "./index.css";
+import firebase from "../firebase";
+
+firebase.firestore().collection("times").add({
+  title: "Highscore",
+  highscore: 30,
+});
 
 class Highscore extends Component {
   constructor(props) {
