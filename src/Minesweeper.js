@@ -47,6 +47,7 @@ class Minesweeper extends Component {
           isOpen={this.state.isOpen}
           onClose={(e) => this.setState({ isOpen: false })}
           onNewGame={this.onNewGame}
+          
           rows={this.state.rows}
           columns={this.state.columns}
           mines={this.state.mines}

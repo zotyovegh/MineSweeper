@@ -85,10 +85,6 @@ class Game extends Component {
     });
   };
 
-  onSaveTime = () => {
-    this.setState({ isWinningDialog: false });
-  };
-
   render() {
     return (
       <div className="minesweeper">
@@ -112,7 +108,6 @@ class Game extends Component {
           isOpen={this.state.isWinningDialog}
           onClose={(e) => this.setState({ isWinningDialog: false })}
           onNewGame={this.reset}
-          onSaveTime={this.onSaveTime}
           time={this.state.time}
         ></WinningDialog>
       </div>

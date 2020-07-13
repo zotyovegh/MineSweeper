@@ -31,7 +31,7 @@ const Highscore = () => {
             <div>
               {time.title}
               <code>
-                {'  '}
+                {"  "}
                 {time.highscore}
               </code>
             </div>
