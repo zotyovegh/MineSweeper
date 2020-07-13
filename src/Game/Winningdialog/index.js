@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./index.css";
+import firebase from "../../firebase";
 
 class WinningDialog extends Component {
   constructor(props) {
@@ -51,9 +52,12 @@ class WinningDialog extends Component {
     return <div>{winningDialog}</div>;
   }
 
-  onSaveTime = () => {
-    //Following values will be needed for the firebase saving
-    console.log(this.state.name + " " + this.props.time);
+  onSaveTime = (e) => {
+    firebase.firestore().collection("times").add({
+      title: this.state.name,
+      highscore: this.props.time,
+    });
+    this.props.onClose();
   };
 }
 export default WinningDialog;

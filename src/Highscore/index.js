@@ -24,7 +24,6 @@ const Highscore = () => {
   const times = useTimes();
   return (
     <div>
-      <div className="highscore">Highscore...</div>
       <ol>
         {times.map((time) => (
           <li key={time.id}>
