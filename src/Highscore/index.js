@@ -1,24 +1,44 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import "./index.css";
 import firebase from "../firebase";
 
-firebase.firestore().collection("times").add({
-  title: "Highscore",
-  highscore: 30,
-});
+function useTimes() {
+  const [times, setTimes] = useState([]);
 
-class Highscore extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
-  render() {
-    return (
-      <div>
-        <div className="highscore">Highscore...</div>
-      </div>
-    );
-  }
+  useEffect(() => {
+    firebase
+      .firestore()
+      .collection("times")
+      .onSnapshot((snapshot) => {
+        const newTimes = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setTimes(newTimes);
+      });
+  }, []);
+  return times;
 }
+
+const Highscore = () => {
+  const times = useTimes();
+  return (
+    <div>
+      <div className="highscore">Highscore...</div>
+      <ol>
+        {times.map((time) => (
+          <li key={time.id}>
+            <div>
+              {time.title}
+              <code>
+                {'  '}
+                {time.highscore}
+              </code>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  );
+};
 export default Highscore;
