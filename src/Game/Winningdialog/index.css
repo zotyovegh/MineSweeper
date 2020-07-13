@@ -35,18 +35,20 @@
   font-size: 22px;
 }
 
-
 #cancel {
   margin-left: 80px;
-  
 }
 
-.buttons{
+.buttons {
   width: fit-content;
   margin-top: 5px;
 }
 
-.winningStyles{
+.winningStyles {
   font-size: 20px;
   max-width: 230px;
+}
+
+#name {
+  width: 120px;
 }

@@ -14,7 +14,7 @@ class Game extends Component {
     mines: this.props.mines,
     flags: this.props.flags,
     game: "pending",
-    isWinningDialog: false,
+    isWinningDialog: true,
   };
 
   componentWillMount() {

@@ -4,7 +4,17 @@ import "./index.css";
 class WinningDialog extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      name: "",
+    };
+
+    this.onNameChange = this.onNameChange.bind(this);
+  }
+
+  onNameChange(e) {
+    this.setState({
+      name: e.target.value,
+    });
   }
 
   render() {
@@ -13,9 +23,13 @@ class WinningDialog extends Component {
         <div className="Message">
           Congratulations, you beat the game in {this.props.time} seconds!!!
         </div>
-        <button className="buttons" id="save" onClick={this.onSaveTime}>
-          Save my time
-        </button>
+        <div>
+          <input type="text" id="name" onChange={this.onNameChange}></input>
+          <button className="buttons" id="save" onClick={this.onSaveTime}>
+            Save my time
+          </button>
+        </div>
+
         <div>
           <button
             className="buttons"
@@ -38,7 +52,8 @@ class WinningDialog extends Component {
   }
 
   onSaveTime = () => {
-    
+    //Following values will be needed for the firebase saving
+    console.log(this.state.name + " " + this.props.time);
   };
 }
 export default WinningDialog;
