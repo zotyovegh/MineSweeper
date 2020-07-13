@@ -6,9 +6,10 @@ function useTimes() {
   const [times, setTimes] = useState([]);
 
   useEffect(() => {
-    firebase
+    const unsubscribe = firebase
       .firestore()
       .collection("times")
+      .orderBy("highscore", "asc")
       .onSnapshot((snapshot) => {
         const newTimes = snapshot.docs.map((doc) => ({
           id: doc.id,
@@ -16,6 +17,8 @@ function useTimes() {
         }));
         setTimes(newTimes);
       });
+
+    return () => unsubscribe();
   }, []);
   return times;
 }
