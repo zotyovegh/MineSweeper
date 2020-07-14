@@ -3,7 +3,7 @@ import "./index.css";
 import firebase from "../firebase";
 
 function useTimes(category) {
-  const [beginner, setTimes] = useState([]);
+  const [cat, setTimes] = useState([]);
 
   useEffect(() => {
     const unsubscribe = firebase
@@ -20,7 +20,7 @@ function useTimes(category) {
       });
     return () => unsubscribe();
   }, []);
-  return beginner;
+  return cat;
 }
 
 const Highscore = () => {

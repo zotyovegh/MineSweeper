@@ -88,12 +88,12 @@ class Grid extends Component {
           this.setState({ rows }, () => {
             this.winCheck();
           });
-
-          if (!currentCell.hasMine && countNeighbours === 0) {
+          if (this.props.openedCells === 1 && currentCell.minesAround >= 1) {
+            console.log("should redo it");
+      
+          } else if (!currentCell.hasMine && countNeighbours === 0) {
             this.countEmptyCell(cell);
-          }
-
-          if (currentCell.hasMine && this.props.openedCells !== 0) {
+          } else if (currentCell.hasMine && this.props.openedCells !== 0) {
             this.revealBombs();
 
             this.props.finishGame();
