@@ -3,44 +3,43 @@ import "./index.css";
 import firebase from "../firebase";
 
 function useTimes() {
-  const [times, setTimes] = useState([]);
+  const [beginner, setTimes] = useState([]);
 
   useEffect(() => {
     const unsubscribe = firebase
       .firestore()
-      .collection("times")
+      .collection("beginner")
       .orderBy("highscore", "asc")
-      .limit(5)
+      .limit(10)
       .onSnapshot((snapshot) => {
-        const newTimes = snapshot.docs.map((doc) => ({
+        const newData = snapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         }));
-        setTimes(newTimes);
+        setTimes(newData);
       });
-
     return () => unsubscribe();
   }, []);
-  return times;
+  return beginner;
 }
 
 const Highscore = () => {
-  const times = useTimes();
+  const beginner = useTimes();
   return (
     <div>
       <ol>
-        {times.map((time) => (
-          <li key={time.id}>
+        {beginner.map((data) => (
+          <li key={data.id}>
             <div>
-              {time.title}
+              {data.name}
               <code>
                 {"  "}
-                {time.highscore}
+                {data.highscore}
               </code>
             </div>
           </li>
         ))}
-      </ol>     
+      </ol>
     </div>
   );
 };

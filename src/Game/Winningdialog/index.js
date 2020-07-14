@@ -43,7 +43,6 @@ class WinningDialog extends Component {
             Cancel
           </button>
         </div>
-        {this.props.category}
       </div>
     );
 
