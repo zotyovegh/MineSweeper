@@ -68,8 +68,11 @@ class Grid extends Component {
     neighbours.then((countNeighbours) => {
       let rows = this.state.rows;
       let currentCell = rows[cell.y][cell.x];
-
-      if (currentCell.hasMine && this.props.openedCells === 0) {
+      currentCell.minesAround = countNeighbours;
+      if (
+        (currentCell.hasMine && this.props.openedCells === 0) ||
+        (this.props.openedCells === 0 && currentCell.minesAround >= 1)
+      ) {
         let newRows = this.createGrid(this.props);
         this.setState(
           {
@@ -83,17 +86,14 @@ class Grid extends Component {
         if (!currentCell.isPressed && !cell.hasFlag) {
           this.props.onCellInspect();
           currentCell.isPressed = true;
-          currentCell.minesAround = countNeighbours;
 
           this.setState({ rows }, () => {
             this.winCheck();
           });
-          if (this.props.openedCells === 1 && currentCell.minesAround >= 1) {
-            console.log("should redo it");
-      
-          } else if (!currentCell.hasMine && countNeighbours === 0) {
+          if (!currentCell.hasMine && countNeighbours === 0) {
             this.countEmptyCell(cell);
-          } else if (currentCell.hasMine && this.props.openedCells !== 0) {
+          }
+          if (currentCell.hasMine && this.props.openedCells !== 0) {
             this.revealBombs();
 
             this.props.finishGame();
