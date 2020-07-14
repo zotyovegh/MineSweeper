@@ -10,7 +10,7 @@ function useTimes(category) {
       .firestore()
       .collection(category)
       .orderBy("highscore", "asc")
-      .limit(10)
+      .limit(5)
       .onSnapshot((snapshot) => {
         const newData = snapshot.docs.map((doc) => ({
           id: doc.id,
@@ -30,6 +30,7 @@ const Highscore = () => {
   return (
     <div className="main">
       <div className="category">
+        Beginner
         <ol>
           {beginner.map((data) => (
             <li key={data.id}>
@@ -45,6 +46,7 @@ const Highscore = () => {
         </ol>
       </div>
       <div className="category">
+        Intermediate
         <ol>
           {intermediate.map((data) => (
             <li key={data.id}>
@@ -60,6 +62,7 @@ const Highscore = () => {
         </ol>
       </div>
       <div className="category">
+        Expert
         <ol>
           {expert.map((data) => (
             <li key={data.id}>
