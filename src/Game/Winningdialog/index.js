@@ -43,6 +43,7 @@ class WinningDialog extends Component {
             Cancel
           </button>
         </div>
+        {this.props.category}
       </div>
     );
 
@@ -53,8 +54,8 @@ class WinningDialog extends Component {
   }
 
   onSaveTime = (e) => {
-    firebase.firestore().collection("times").add({
-      title: this.state.name,
+    firebase.firestore().collection(this.props.category).add({
+      name: this.state.name,
       highscore: this.props.time,
     });
     this.props.onClose();

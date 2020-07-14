@@ -10,6 +10,7 @@ function useTimes() {
       .firestore()
       .collection("times")
       .orderBy("highscore", "asc")
+      .limit(5)
       .onSnapshot((snapshot) => {
         const newTimes = snapshot.docs.map((doc) => ({
           id: doc.id,
@@ -39,7 +40,7 @@ const Highscore = () => {
             </div>
           </li>
         ))}
-      </ol>
+      </ol>     
     </div>
   );
 };

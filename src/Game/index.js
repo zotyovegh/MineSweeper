@@ -6,15 +6,43 @@ import Header from "./Header";
 import WinningDialog from "./Winningdialog";
 
 class Game extends Component {
-  state = {
-    openedCells: 0,
-    time: 0,
-    rows: this.props.rows,
-    columns: this.props.columns,
-    mines: this.props.mines,
-    flags: this.props.flags,
-    game: "pending",
-    isWinningDialog: true,
+  constructor(props) {
+    super(props);
+    this.state = {
+      openedCells: 0,
+      time: 0,
+      rows: props.rows,
+      columns: props.columns,
+      mines: props.mines,
+      flags: props.flags,
+      game: "pending",
+      isWinningDialog: false,
+      category: this.getCategory(),
+    };
+  }
+
+  getCategory = () => {
+    if (
+      this.props.rows === 9 &&
+      this.props.columns === 9 &&
+      this.props.mines === 10
+    ) {
+      return "beginner";
+    } else if (
+      this.props.rows === 16 &&
+      this.props.columns === 16 &&
+      this.props.mines === 40
+    ) {
+      return "intermediate";
+    } else if (
+      this.props.rows === 16 &&
+      this.props.columns === 30 &&
+      this.props.mines === 99
+    ) {
+      return "expert";
+    } else {
+      return "";
+    }
   };
 
   componentWillMount() {
@@ -41,6 +69,7 @@ class Game extends Component {
       mines: this.props.mines,
       flags: this.props.flags,
       game: "pending",
+      category: this.getCategory(),
     };
 
     this.intervals.map(clearInterval);
@@ -105,6 +134,7 @@ class Game extends Component {
           winning={this.winning}
         />
         <WinningDialog
+          category={this.state.category}
           isOpen={this.state.isWinningDialog}
           onClose={(e) => this.setState({ isWinningDialog: false })}
           onNewGame={this.reset}
