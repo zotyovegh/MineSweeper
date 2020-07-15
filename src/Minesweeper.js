@@ -38,6 +38,37 @@ class Minesweeper extends Component {
     );
   };
 
+  lastValue = (beginner, intermediate, expert) => {
+    var beginnerLast = 0;
+    var intermediateLast = 0;
+    var expertLast = 0;
+
+    if (beginner.length < 10) {
+      beginnerLast =
+        beginner[beginner.length - 1] &&
+        beginner[beginner.length - 1].highscore;
+    } else {
+      beginnerLast = beginner[9] && beginner[9].highscore;
+    }
+
+    if (intermediate.length < 10) {
+      intermediateLast =
+        intermediate[intermediate.length - 1] &&
+        intermediate[intermediate.length - 1].highscore;
+    } else {
+      intermediateLast = intermediate[9] && intermediate[9].highscore;
+    }
+
+    if (expert.length < 10) {
+      expertLast =
+        expert[expert.length - 1] && expert[expert.length - 1].highscore;
+    } else {
+      expertLast = expert[9] && expert[9].highscore;
+    }
+
+    console.log(beginnerLast + " " + intermediateLast + " " + expertLast);
+  };
+
   render() {
     return (
       <div>
@@ -47,7 +78,6 @@ class Minesweeper extends Component {
           isOpen={this.state.isOpen}
           onClose={(e) => this.setState({ isOpen: false })}
           onNewGame={this.onNewGame}
-          
           rows={this.state.rows}
           columns={this.state.columns}
           mines={this.state.mines}
@@ -60,7 +90,7 @@ class Minesweeper extends Component {
           mines={this.state.mines}
           flags={this.state.mines}
         />
-        <Highscore />
+        <Highscore lastValue={this.lastValue} />
       </div>
     );
   }

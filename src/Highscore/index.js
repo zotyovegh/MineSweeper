@@ -23,14 +23,14 @@ function useTimes(category) {
   return cat;
 }
 
-const Highscore = () => {
+
+const Highscore = (props) => {
   const beginner = useTimes("beginner");
   const intermediate = useTimes("intermediate");
   const expert = useTimes("expert");
 
-  const beginnerLast = beginner[9] && beginner[9].highscore;
-  const intermediateLast = intermediate[9] && intermediate[9].highscore;
-  const expertLast = expert[9] && expert[9].highscore;
+  
+  props.lastValue(beginner, intermediate, expert)
 
   return (
     <div className="main">
