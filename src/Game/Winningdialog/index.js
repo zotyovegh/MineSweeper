@@ -18,11 +18,14 @@ class WinningDialog extends Component {
     });
   }
 
+
+
   render() {
     let winningDialog = (
       <div className="winningStyles">
         
         <div className="Message">
+          {this.props.limit}
           Congratulations, you beat the game in {this.props.time} seconds!!!
         </div>
         <div>

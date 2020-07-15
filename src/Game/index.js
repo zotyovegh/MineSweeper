@@ -18,9 +18,7 @@ class Game extends Component {
       game: "pending",
       isWinningDialog: false,
       category: this.getCategory(),
-      beginner: "",
-      intermediate: "",
-      expert: "",
+      limit: "",
     };
     this.beginnerLast = "";
     this.intermediateLast = "";
@@ -120,10 +118,17 @@ class Game extends Component {
   };
 
   winning = () => {
+    var value;
+    if (this.state.category === "beginner") {
+      value = this.beginnerLast;
+    } else if (this.state.category === "intermediate") {
+      value = this.intermediateLast;
+    } else if (this.state.category === "expert") {
+      value = this.expertLast;
+    }
+
     this.setState({
-      beginner: this.beginnerLast,
-      intermediate: this.intermediateLast,
-      expert: this.expertLast,
+      limit: value,
       game: "won",
       isWinningDialog: true,
     });
@@ -154,9 +159,8 @@ class Game extends Component {
           onClose={(e) => this.setState({ isWinningDialog: false })}
           onNewGame={this.reset}
           time={this.state.time}
-          beginnerLast={this.state.beginner}
-          intermediateLast={this.state.intermediate}
-          expertLast={this.state.expert}
+          limit={this.state.limit}
+
         ></WinningDialog>
       </div>
     );
