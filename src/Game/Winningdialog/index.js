@@ -18,22 +18,21 @@ class WinningDialog extends Component {
     });
   }
 
-
-
   render() {
     let winningDialog = (
       <div className="winningStyles">
-        
         <div className="Message">
-          {this.props.limit}
           Congratulations, you beat the game in {this.props.time} seconds!!!
         </div>
-        <div>
-          <input type="text" id="name" onChange={this.onNameChange}></input>
-          <button className="buttons" id="save" onClick={this.onSaveTime}>
-            Save my time
-          </button>
-        </div>
+
+        {(this.props.limit === -1 || this.props.limit > this.props.time) && (
+          <div>
+            <input type="text" id="name" onChange={this.onNameChange}></input>
+            <button className="buttons" id="save" onClick={this.onSaveTime}>
+              Save my time
+            </button>
+          </div>
+        )}
 
         <div>
           <button
