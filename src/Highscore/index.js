@@ -29,8 +29,30 @@ const Highscore = (props) => {
   const intermediate = useTimes("intermediate");
   const expert = useTimes("expert");
 
+  var beginnerLast = 0;
+  var intermediateLast = 0;
+  var expertLast = 0;
+
+  if (beginner.length < 10) {
+    beginnerLast = -1;
+  } else {
+    beginnerLast = beginner[9] && beginner[9].highscore;
+  }
+
+  if (intermediate.length < 10) {
+    intermediateLast = -1;
+  } else {
+    intermediateLast = intermediate[9] && intermediate[9].highscore;
+  }
+
+  if (expert.length < 10) {
+    expertLast = -1;
+  } else {
+    expertLast = expert[9] && expert[9].highscore;
+  }
+
   
-  props.lastValue(beginner, intermediate, expert)
+  props.lastValue(beginnerLast, intermediateLast, expertLast)
 
   return (
     <div className="main">

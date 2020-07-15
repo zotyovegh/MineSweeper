@@ -21,6 +21,7 @@ class WinningDialog extends Component {
   render() {
     let winningDialog = (
       <div className="winningStyles">
+        
         <div className="Message">
           Congratulations, you beat the game in {this.props.time} seconds!!!
         </div>

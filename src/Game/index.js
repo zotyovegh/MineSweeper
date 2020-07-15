@@ -18,7 +18,13 @@ class Game extends Component {
       game: "pending",
       isWinningDialog: false,
       category: this.getCategory(),
+      beginner: "",
+      intermediate: "",
+      expert: "",
     };
+    this.beginnerLast = "";
+    this.intermediateLast = "";
+    this.expertLast = "";
   }
 
   getCategory = () => {
@@ -58,6 +64,12 @@ class Game extends Component {
 
   setInterval = (fn, t) => {
     this.intervals.push(setInterval(fn, t));
+  };
+
+  setLastValues = (beginner, intermediate, expert) => {
+    this.beginnerLast = beginner;
+    this.intermediateLast = intermediate;
+    this.expertLast = expert;
   };
 
   reset = () => {
@@ -109,6 +121,9 @@ class Game extends Component {
 
   winning = () => {
     this.setState({
+      beginner: this.beginnerLast,
+      intermediate: this.intermediateLast,
+      expert: this.expertLast,
       game: "won",
       isWinningDialog: true,
     });
@@ -139,6 +154,9 @@ class Game extends Component {
           onClose={(e) => this.setState({ isWinningDialog: false })}
           onNewGame={this.reset}
           time={this.state.time}
+          beginnerLast={this.state.beginner}
+          intermediateLast={this.state.intermediate}
+          expertLast={this.state.expert}
         ></WinningDialog>
       </div>
     );
