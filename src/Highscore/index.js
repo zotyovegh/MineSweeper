@@ -83,7 +83,7 @@ const Highscore = (props) => {
       </div>
       <div className="category">
         <div className="title">Expert</div>
-        <ol>
+        <ol className="ol">
           {expert.map((data) => (
             <li className="item" key={data.id}>
               <div>

@@ -2,6 +2,7 @@
   display: flex;
   margin-top: 20px;
   margin-left: -20px;
+  
 }
 
 .category {
@@ -16,7 +17,7 @@
 }
 
 .name {
-  width: 100px;
+  width: 70px;
   float: left;
 }
 
@@ -27,3 +28,5 @@
 .title {
   margin-left: 20px;
 }
+
+

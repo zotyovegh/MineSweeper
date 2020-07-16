@@ -36,40 +36,40 @@ class Minesweeper extends Component {
         this.game.current.reset();
       }
     );
-    
   };
 
   getLastValue = (beginner, intermediate, expert) => {
-    if(this.game.current !== null)
-    {
-      this.game.current.setLastValues(beginner, intermediate, expert)
+    if (this.game.current !== null) {
+      this.game.current.setLastValues(beginner, intermediate, expert);
     }
-  }
-
-
+  };
 
   render() {
     return (
       <div>
-        <button onClick={this.manageDifficulty}>Difficulty</button>
+        
+        <div className="game">
+          <button onClick={this.manageDifficulty}>Difficulty</button>
+          <Difficulty
+            isOpen={this.state.isOpen}
+            onClose={(e) => this.setState({ isOpen: false })}
+            onNewGame={this.onNewGame}
+            rows={this.state.rows}
+            columns={this.state.columns}
+            mines={this.state.mines}
+          ></Difficulty>
 
-        <Difficulty
-          isOpen={this.state.isOpen}
-          onClose={(e) => this.setState({ isOpen: false })}
-          onNewGame={this.onNewGame}
-          rows={this.state.rows}
-          columns={this.state.columns}
-          mines={this.state.mines}
-        ></Difficulty>
-
-        <Game
-          ref={this.game}
-          rows={this.state.rows}
-          columns={this.state.columns}
-          mines={this.state.mines}
-          flags={this.state.mines}
-        />
-        <Highscore lastValue={this.getLastValue} />
+          <Game
+            ref={this.game}
+            rows={this.state.rows}
+            columns={this.state.columns}
+            mines={this.state.mines}
+            flags={this.state.mines}
+          />
+        </div>
+        <div className="highscore">
+          <Highscore lastValue={this.getLastValue} />
+        </div>
       </div>
     );
   }
