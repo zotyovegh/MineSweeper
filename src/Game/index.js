@@ -135,24 +135,33 @@ class Game extends Component {
   };
 
   render() {
+    var widthstyle = {
+      width: this.state.columns * 34 + (this.state.columns >= 8 ? +12 : 9),
+    };
     return (
       <div className="minesweeper">
-        <Header
-          time={this.state.time}
-          flags={this.state.flags}
-          reset={this.reset}
-        />
-        <Grid
-          game={this.state.game}
-          openedCells={this.state.openedCells}
-          rows={this.state.rows}
-          columns={this.state.columns}
-          mines={this.state.mines}
-          changeFlagsNumber={this.changeFlagsNumber}
-          onCellInspect={this.handleCellInspect}
-          finishGame={this.finishGame}
-          winning={this.winning}
-        />
+        <div style={widthstyle}>
+          <Header
+            time={this.state.time}
+            flags={this.state.flags}
+            reset={this.reset}
+            columns={this.state.columns}
+          />
+        </div>
+        <div style={widthstyle}>
+          <Grid
+            game={this.state.game}
+            openedCells={this.state.openedCells}
+            rows={this.state.rows}
+            columns={this.state.columns}
+            mines={this.state.mines}
+            changeFlagsNumber={this.changeFlagsNumber}
+            onCellInspect={this.handleCellInspect}
+            finishGame={this.finishGame}
+            winning={this.winning}
+          />
+        </div>
+
         <WinningDialog
           category={this.state.category}
           isOpen={this.state.isWinningDialog}
@@ -160,7 +169,6 @@ class Game extends Component {
           onNewGame={this.reset}
           time={this.state.time}
           limit={this.state.limit}
-
         ></WinningDialog>
       </div>
     );
