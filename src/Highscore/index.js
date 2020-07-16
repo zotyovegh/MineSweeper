@@ -55,7 +55,7 @@ const Highscore = (props) => {
   return (
     <div className="main">
       <div className="category">
-        Beginner
+        <div className="title">Beginner</div>
         <ol>
           {beginner.map((data) => (
             <li className="item" key={data.id}>
@@ -68,7 +68,8 @@ const Highscore = (props) => {
         </ol>
       </div>
       <div className="category">
-        Intermediate
+        <div className="title">Intermediate</div>
+
         <ol>
           {intermediate.map((data) => (
             <li className="item" key={data.id}>
@@ -81,7 +82,7 @@ const Highscore = (props) => {
         </ol>
       </div>
       <div className="category">
-        Expert
+        <div className="title">Expert</div>
         <ol>
           {expert.map((data) => (
             <li className="item" key={data.id}>
