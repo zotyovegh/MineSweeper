@@ -5,9 +5,9 @@
 .category {
   font-size: 12px;
   border: 1px solid black;
+  align-self: flex-start;
+  text-align: left;
 }
-
-
 
 .score{
   border: 1px solid red;

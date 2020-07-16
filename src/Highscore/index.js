@@ -61,10 +61,7 @@ const Highscore = (props) => {
             <li className="item" key={data.id}>
               <div>
                 <div className="name">{data.name}</div>
-                <code className="score">
-                  {"  "}
-                  {data.highscore}
-                </code>
+                <div className="score">{data.highscore}</div>
               </div>
             </li>
           ))}
@@ -77,10 +74,7 @@ const Highscore = (props) => {
             <li className="item" key={data.id}>
               <div>
                 <div className="name">{data.name}</div>
-                <code className="score">
-                  {"  "}
-                  {data.highscore}
-                </code>
+                <div className="score">{data.highscore}</div>
               </div>
             </li>
           ))}
@@ -93,10 +87,7 @@ const Highscore = (props) => {
             <li className="item" key={data.id}>
               <div>
                 <div className="name">{data.name}</div>
-                <code className="score">
-                  {"  "}
-                  {data.highscore}
-                </code>
+                <div className="score">{data.highscore}</div>
               </div>
             </li>
           ))}
