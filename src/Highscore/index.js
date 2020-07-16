@@ -23,7 +23,6 @@ function useTimes(category) {
   return cat;
 }
 
-
 const Highscore = (props) => {
   const beginner = useTimes("beginner");
   const intermediate = useTimes("intermediate");
@@ -51,8 +50,7 @@ const Highscore = (props) => {
     expertLast = expert[9] && expert[9].highscore;
   }
 
-  
-  props.lastValue(beginnerLast, intermediateLast, expertLast)
+  props.lastValue(beginnerLast, intermediateLast, expertLast);
 
   return (
     <div className="main">
@@ -60,10 +58,10 @@ const Highscore = (props) => {
         Beginner
         <ol>
           {beginner.map((data) => (
-            <li key={data.id}>
+            <li className="item" key={data.id}>
               <div>
-                {data.name}
-                <code>
+                <div className="name">{data.name}</div>
+                <code className="score">
                   {"  "}
                   {data.highscore}
                 </code>
@@ -76,10 +74,10 @@ const Highscore = (props) => {
         Intermediate
         <ol>
           {intermediate.map((data) => (
-            <li key={data.id}>
+            <li className="item" key={data.id}>
               <div>
-                {data.name}
-                <code>
+                <div className="name">{data.name}</div>
+                <code className="score">
                   {"  "}
                   {data.highscore}
                 </code>
@@ -92,10 +90,10 @@ const Highscore = (props) => {
         Expert
         <ol>
           {expert.map((data) => (
-            <li key={data.id}>
+            <li className="item" key={data.id}>
               <div>
-                {data.name}
-                <code>
+                <div className="name">{data.name}</div>
+                <code className="score">
                   {"  "}
                   {data.highscore}
                 </code>

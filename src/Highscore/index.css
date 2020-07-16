@@ -1,7 +1,26 @@
-.category {
-  font-size: 15px;
-}
-
 .main {
   display: flex;
+}
+
+.category {
+  font-size: 12px;
+  border: 1px solid black;
+}
+
+
+
+.score{
+  border: 1px solid red;
+  width: 20px;
+  float: left;
+}
+
+.name{
+  border: 1px solid green;
+  width: 100px;
+  float: left;
+}
+
+.item {
+  margin-top: -10px;
 }

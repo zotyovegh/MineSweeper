@@ -38,6 +38,7 @@ class WinningDialog extends Component {
           <button
             className="buttons"
             id="newgame"
+            
             onClick={this.props.onNewGame}
           >
             New Game
