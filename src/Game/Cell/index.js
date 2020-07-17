@@ -26,31 +26,29 @@ const Cell = (props) => {
   let cell = () => {
     if (props.data.isPressed) {
       if (props.data.hasMine) {
-        if (props.data.hasFlag) {
-          return (
-            <div
-              className="pressed cell"
-              onClick={() => props.click(props.data)}
-              onContextMenu={(e) => {
-                e.preventDefault();
-              }}
-            >
-              <img width="26" src={wrongFlag} />
-            </div>
-          );
-        } else {
-          return (
-            <div
-              className="pressed cell"
-              onClick={() => props.click(props.data)}
-              onContextMenu={(e) => {
-                e.preventDefault();
-              }}
-            >
-              <img width="26" src={bomb} />
-            </div>
-          );
-        }
+        return (
+          <div
+            className="pressed cell"
+            onClick={() => props.click(props.data)}
+            onContextMenu={(e) => {
+              e.preventDefault();
+            }}
+          >
+            <img width="26" src={bomb} />
+          </div>
+        );
+      } else if (props.data.hasFlag) {
+        return (
+          <div
+            className="pressed cell"
+            onClick={() => props.click(props.data)}
+            onContextMenu={(e) => {
+              e.preventDefault();
+            }}
+          >
+            <img width="26" src={wrongFlag} />
+          </div>
+        );
       } else if (props.data.minesAround === 0) {
         return (
           <div
