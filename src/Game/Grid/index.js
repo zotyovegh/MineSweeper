@@ -126,13 +126,15 @@ class Grid extends Component {
     for (let row = 0; row < grid.length; row++) {
       for (let col = 0; col < grid[0].length; col++) {
         let cell = grid[row][col];
-        if ((cell.hasMine && !cell.isPressed && !cell.hasFlag) || cell.hasFlag) {
+        if (
+          (cell.hasFlag && !cell.hasMine) ||
+          (cell.hasMine && !cell.hasFlag)
+        ) {
           cell.isPressed = true;
         }
       }
     }
   };
-
   countNeighbours = (cell) => {
     //Method based on the reference code, that was created in java
     let total = 0;
