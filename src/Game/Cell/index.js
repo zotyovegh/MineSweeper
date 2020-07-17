@@ -1,4 +1,6 @@
 import React from "react";
+import bomb from "./bomb.png";
+import flag from "./flag.png";
 
 const Cell = (props) => {
   var color = "";
@@ -25,12 +27,14 @@ const Cell = (props) => {
       if (props.data.hasMine) {
         return (
           <div
-            className="bomb cell"
+            className="pressed cell"
             onClick={() => props.click(props.data)}
             onContextMenu={(e) => {
               e.preventDefault();
             }}
-          ></div>
+          >
+            <img width="26" src={bomb} />
+          </div>
         );
       } else if (props.data.minesAround === 0) {
         return (
@@ -67,7 +71,9 @@ const Cell = (props) => {
             e.preventDefault();
             props.flag(props.data);
           }}
-        ></div>
+        >
+          <img width="16" src={flag} />
+        </div>
       );
     } else {
       return (

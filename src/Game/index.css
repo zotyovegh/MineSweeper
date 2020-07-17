@@ -63,17 +63,13 @@ body {
   border-right: 2px solid black;
 }
 
+.flagged.cell:hover,
 .cell:hover {
   background-color: rgb(231, 255, 250);
 }
 
-.flagged.cell {
-  background-color: rgb(253, 160, 53);
-}
 
-.flagged.cell:hover {
-  background-color: rgb(255, 192, 120);
-}
+
 
 .bomb.cell {
   background-color: red;
