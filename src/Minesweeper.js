@@ -9,7 +9,7 @@ class Minesweeper extends Component {
   constructor(props) {
     super();
     this.state = {
-      isOpen: false,
+      isDifficultyOpen: false,
       //beginner
       rows: 9,
       columns: 9,
@@ -19,9 +19,9 @@ class Minesweeper extends Component {
   }
 
   manageDifficulty = () => {
-    this.state.isOpen
-      ? this.setState({ isOpen: false })
-      : this.setState({ isOpen: true });
+    this.state.isDifficultyOpen
+      ? this.setState({ isDifficultyOpen: false })
+      : this.setState({ isDifficultyOpen: true });
   };
 
   onNewGame = (recrows, reccolumns, recmines) => {
@@ -50,7 +50,7 @@ class Minesweeper extends Component {
         <div className="game">
           <button onClick={this.manageDifficulty}>Difficulty</button>
           <Difficulty
-            isOpen={this.state.isOpen}
+            isOpen={this.state.isDifficultyOpen}
             onClose={(e) => this.setState({ isOpen: false })}
             onNewGame={this.onNewGame}
             rows={this.state.rows}
