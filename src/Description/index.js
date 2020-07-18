@@ -8,7 +8,9 @@ class Description extends Component {
   }
 
   render() {
-    let description = <div className="descriptionStyles"></div>;
+    let description = <div className="descriptionStyles">
+      
+    </div>;
 
     if (!this.props.isOpen) {
       description = null;
