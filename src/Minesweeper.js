@@ -47,7 +47,6 @@ class Minesweeper extends Component {
   render() {
     return (
       <div>
-        
         <div className="game">
           <button onClick={this.manageDifficulty}>Difficulty</button>
           <Difficulty
