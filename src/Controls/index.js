@@ -25,12 +25,7 @@ class Controls extends Component {
           <li>Press F2 or click the smiley face to start a new game.</li>
         </div>
 
-        <div className="titles">Mobile</div>
-        <div className="list">
-          <li>Tap an empty square to reveal it.</li>
-          <li>Long-press an empty square to flag it.</li>
-          <li>Tap a number to reveal its adjacent squares.</li>
-        </div>
+       
       </div>
     );
 
@@ -41,3 +36,13 @@ class Controls extends Component {
   }
 }
 export default Controls;
+
+
+/*
+ <div className="titles">Mobile</div>
+        <div className="list">
+          <li>Tap an empty square to reveal it.</li>
+          <li>Long-press an empty square to flag it.</li>
+          <li>Tap a number to reveal its adjacent squares.</li>
+        </div>
+*/
