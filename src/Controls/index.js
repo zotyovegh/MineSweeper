@@ -10,7 +10,7 @@ class Controls extends Component {
   render() {
     let controls = (
       <div className="controlsStyles">
-        <hi3>Desktop</hi3>
+        <div className="titles">Desktop</div>
         <div className="list">
           <li>Left-click an empty square to reveal it.</li>
           <li>Right-click (or Ctrl+click) an empty square to flag it.</li>
@@ -25,7 +25,7 @@ class Controls extends Component {
           <li>Press F2 or click the smiley face to start a new game.</li>
         </div>
 
-        <hi3>Mobile</hi3>
+        <div className="titles">Mobile</div>
         <div className="list">
           <li>Tap an empty square to reveal it.</li>
           <li>Long-press an empty square to flag it.</li>
