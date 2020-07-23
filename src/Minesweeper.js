@@ -57,7 +57,11 @@ class Minesweeper extends Component {
     return (
       <div>
         <div className="game">
-          <button onClick={this.manageDifficulty}>Difficulty</button>
+          <div>
+            <button onClick={this.manageDifficulty}>Difficulty</button>
+            <button onClick={this.manageControls}>Controls</button>
+          </div>
+
           <Difficulty
             isOpen={this.state.isDifficultyOpen}
             onClose={(e) => this.setState({ isDifficultyOpen: false })}
@@ -67,7 +71,6 @@ class Minesweeper extends Component {
             mines={this.state.mines}
           ></Difficulty>
 
-          <button onClick={this.manageControls}>Controls</button>
           <Controls
             isOpen={this.state.isControlsOpen}
             onClose={(e) => this.setState({ isControlsOpen: false })}
