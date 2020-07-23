@@ -1,21 +1,21 @@
 import React, { Component } from "react";
 import "./index.css";
 
-class Description extends Component {
+class Controls extends Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
 
   render() {
-    let description = <div className="descriptionStyles">
+    let controls = <div className="controlsStyles">
       
     </div>;
 
     if (!this.props.isOpen) {
-      description = null;
+      controls = null;
     }
-    return <div>{description}</div>;
+    return <div>{controls}</div>;
   }
 }
-export default Description;
+export default Controls;

@@ -2,7 +2,7 @@ import React, { Component, createRef } from "react";
 
 import Game from "../../minesweeper/src/Game";
 import Difficulty from "./Difficulty";
-import Description from "./Description"
+import Controls from "./Controls";
 import "./index.css";
 import Highscore from "./Highscore";
 
@@ -11,7 +11,7 @@ class Minesweeper extends Component {
     super();
     this.state = {
       isDifficultyOpen: false,
-      isDescriptionOpen: false,
+      isControlsOpen: false,
       //beginner
       rows: 9,
       columns: 9,
@@ -26,15 +26,15 @@ class Minesweeper extends Component {
       : this.setState({ isDifficultyOpen: true });
   };
 
-  manageDescription = () => {
-    this.state.isDescriptionOpen
-      ? this.setState({ isDescriptionOpen: false })
-      : this.setState({ isDescriptionOpen: true });
+  manageControls = () => {
+    this.state.isControlsOpen
+      ? this.setState({ isControlsOpen: false })
+      : this.setState({ isControlsOpen: true });
   };
 
   onNewGame = (recrows, reccolumns, recmines) => {
     this.manageDifficulty();
-    this.manageDescription();
+    this.manageControls();
     this.setState(
       {
         rows: recrows,
@@ -67,11 +67,11 @@ class Minesweeper extends Component {
             mines={this.state.mines}
           ></Difficulty>
 
-          <button onClick={this.manageDescription}>Description</button>
-          <Description
-            isOpen={this.state.isDescriptionOpen}
-            onClose={(e) => this.setState({ isDescriptionOpen: false })}
-          ></Description>
+          <button onClick={this.manageControls}>Controls</button>
+          <Controls
+            isOpen={this.state.isControlsOpen}
+            onClose={(e) => this.setState({ isControlsOpen: false })}
+          ></Controls>
 
           <Game
             ref={this.game}
