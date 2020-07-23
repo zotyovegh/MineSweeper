@@ -10,7 +10,7 @@ class Controls extends Component {
   render() {
     let controls = (
       <div className="controlsStyles">
-        <div className="titles">Desktop</div>
+        <div className="titles">Controls</div>
         <div className="list">
           <li>Left-click an empty square to reveal it.</li>
           <li>Right-click (or Ctrl+click) an empty square to flag it.</li>

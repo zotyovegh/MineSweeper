@@ -1,5 +1,5 @@
 .controlsStyles {
-  width: 430px;
+  width: 450px;
   height: auto;
   max-width: 100%;
   margin: 0 auto;
@@ -33,11 +33,11 @@
 .list {
   margin-left: 20px;
   margin-right: 20px;
-  font-size: 14px;
+  font-size: 18px;
 }
 
 .titles {
-  font-size: 20px;
+  font-size: 26px;
   margin-top: 5px;
   margin-left: 10px;
 }
