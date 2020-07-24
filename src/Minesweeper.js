@@ -23,13 +23,13 @@ class Minesweeper extends Component {
   manageDifficulty = () => {
     this.state.isDifficultyOpen
       ? this.setState({ isDifficultyOpen: false })
-      : this.setState({ isDifficultyOpen: true });
+      : this.setState({ isDifficultyOpen: true, isControlsOpen: false });
   };
 
   manageControls = () => {
     this.state.isControlsOpen
       ? this.setState({ isControlsOpen: false })
-      : this.setState({ isControlsOpen: true });
+      : this.setState({ isControlsOpen: true, isDifficultyOpen: false });
   };
 
   onNewGame = (recrows, reccolumns, recmines) => {
