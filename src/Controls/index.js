@@ -35,7 +35,7 @@ class Controls extends Component {
             Press space bar while hovering over a square to flag it or reveal
             its adjacent squares.
           </li>
-          <li>Press F2 or click the smiley face to start a new game.</li>
+          <li>Press F2 or click the reset to start a new game.</li>
         </div>
 
        
