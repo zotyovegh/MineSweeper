@@ -23,7 +23,6 @@ class Controls extends Component {
           </tbody>
         </table>
 
-
         <div className="list">
           <li>Left-click an empty square to reveal it.</li>
           <li>Right-click (or Ctrl+click) an empty square to flag it.</li>
@@ -35,10 +34,8 @@ class Controls extends Component {
             Press space bar while hovering over a square to flag it or reveal
             its adjacent squares.
           </li>
-          <li>Press F2 or click the reset to start a new game.</li>
+          <li>Press Esc or click the reset to start a new game.</li>
         </div>
-
-       
       </div>
     );
 
@@ -49,7 +46,6 @@ class Controls extends Component {
   }
 }
 export default Controls;
-
 
 /*
  <div className="titles">Mobile</div>
