@@ -23,6 +23,19 @@ class Game extends Component {
     this.beginnerLast = "";
     this.intermediateLast = "";
     this.expertLast = "";
+    this.escFunction = this.escFunction.bind(this);
+  }
+
+  escFunction(event) {
+    if (event.keyCode === 27) {
+      this.reset();
+    }
+  }
+  componentDidMount() {
+    document.addEventListener("keydown", this.escFunction, false);
+  }
+  componentWillUnmount() {
+    document.removeEventListener("keydown", this.escFunction, false);
   }
 
   getCategory = () => {
