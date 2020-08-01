@@ -1,13 +1,11 @@
 .controlsStyles {
-  width: 500px;
+  width: 350px;
   height: auto;
   max-width: 100%;
-  margin: 0 auto;
   position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
   z-index: 999;
+  margin-top: 60px;
+  margin-left: 40px;
   background-color: lightgrey;
   padding: 10px, 20px, 40px;
   border-radius: 8px;
@@ -33,14 +31,13 @@
 .list {
   margin-left: 20px;
   margin-right: 20px;
-  font-size: 18px;
+  font-size: 22px;
 }
 
 .titles {
   font-size: 26px;
   margin-top: 5px;
   margin-left: 10px;
-  
 }
 
 .header {
