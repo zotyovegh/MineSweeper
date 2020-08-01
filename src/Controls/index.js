@@ -25,15 +25,7 @@ class Controls extends Component {
 
         <div className="list">
           <li>Left-click an empty square to reveal it.</li>
-          <li>Right-click (or Ctrl+click) an empty square to flag it.</li>
-          <li>
-            Midde-click (or left+right click) a number to reveal its adjacent
-            squares.
-          </li>
-          <li>
-            Press space bar while hovering over a square to flag it or reveal
-            its adjacent squares.
-          </li>
+          <li>Right-click an empty square to flag it.</li>
           <li>Press Esc or click the reset to start a new game.</li>
         </div>
       </div>
@@ -46,12 +38,3 @@ class Controls extends Component {
   }
 }
 export default Controls;
-
-/*
- <div className="titles">Mobile</div>
-        <div className="list">
-          <li>Tap an empty square to reveal it.</li>
-          <li>Long-press an empty square to flag it.</li>
-          <li>Tap a number to reveal its adjacent squares.</li>
-        </div>
-*/
