@@ -2,7 +2,7 @@
   width: 350px;
   height: auto;
   max-width: 100%;
-  position: fixed;
+  position: absolute;
   z-index: 999;
   margin-top: 60px;
   margin-left: 40px;

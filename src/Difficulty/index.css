@@ -3,7 +3,7 @@
   height: 250px;
   max-width: 100%;
   margin: 0 auto;
-  position: fixed;
+  position: absolute;
   margin-top: 80px;
   margin-left: 40px;
   z-index: 999;
