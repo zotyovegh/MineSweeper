@@ -13,7 +13,7 @@ class Minesweeper extends Component {
       isDifficultyOpen: false,
       isControlsOpen: false,
       //beginner
-      rows: 9,
+      grid: 9,
       columns: 9,
       mines: 10,
     };
@@ -49,7 +49,7 @@ class Minesweeper extends Component {
     this.manageControlsOnNewGame();
     this.setState(
       {
-        rows: recrows,
+        grid: recrows,
         columns: reccolumns,
         mines: recmines,
       },
@@ -78,7 +78,7 @@ class Minesweeper extends Component {
             isOpen={this.state.isDifficultyOpen}
             onClose={(e) => this.setState({ isDifficultyOpen: false })}
             onNewGame={this.onNewGame}
-            rows={this.state.rows}
+            grid={this.state.grid}
             columns={this.state.columns}
             mines={this.state.mines}
           ></Difficulty>
@@ -90,7 +90,7 @@ class Minesweeper extends Component {
 
           <Game
             ref={this.game}
-            rows={this.state.rows}
+            grid={this.state.grid}
             columns={this.state.columns}
             mines={this.state.mines}
             flags={this.state.mines}

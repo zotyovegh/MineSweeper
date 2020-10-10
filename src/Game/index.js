@@ -11,7 +11,7 @@ class Game extends Component {
     this.state = {
       openedCells: 0,
       time: 0,
-      rows: props.rows,
+      grid: props.grid,
       columns: props.columns,
       mines: props.mines,
       flags: props.flags,
@@ -40,19 +40,19 @@ class Game extends Component {
 
   getCategory = () => {
     if (
-      this.props.rows === 9 &&
+      this.props.grid === 9 &&
       this.props.columns === 9 &&
       this.props.mines === 10
     ) {
       return "beginner";
     } else if (
-      this.props.rows === 16 &&
+      this.props.grid === 16 &&
       this.props.columns === 16 &&
       this.props.mines === 40
     ) {
       return "intermediate";
     } else if (
-      this.props.rows === 16 &&
+      this.props.grid === 16 &&
       this.props.columns === 30 &&
       this.props.mines === 99
     ) {
@@ -87,7 +87,7 @@ class Game extends Component {
     this.newState = {
       openedCells: 0,
       time: 0,
-      rows: this.props.rows,
+      grid: this.props.grid,
       columns: this.props.columns,
       mines: this.props.mines,
       flags: this.props.flags,
@@ -165,7 +165,7 @@ class Game extends Component {
           <Grid
             game={this.state.game}
             openedCells={this.state.openedCells}
-            rows={this.state.rows}
+            grid={this.state.grid}
             columns={this.state.columns}
             mines={this.state.mines}
             changeFlagsNumber={this.changeFlagsNumber}

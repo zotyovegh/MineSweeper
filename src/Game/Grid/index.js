@@ -5,7 +5,7 @@ class Grid extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      rows: this.createGrid(props),
+      grid: this.createGrid(props),
     };
     this.isNew = false;
   }
@@ -16,7 +16,7 @@ class Grid extends Component {
       this.props.openedCells === 0
     ) {
       this.setState({
-        rows: this.createGrid(nextProps),
+        grid: this.createGrid(nextProps),
       });
     }
   }
@@ -24,7 +24,7 @@ class Grid extends Component {
   createGrid = (props) => {
     let grid = [];
 
-    for (let i = 0; i < props.rows; i++) {
+    for (let i = 0; i < props.grid; i++) {
       grid.push([]);
       for (let j = 0; j < props.columns; j++) {
         grid[i].push({
@@ -40,7 +40,7 @@ class Grid extends Component {
     }
 
     for (let i = 0; i < props.mines; i++) {
-      let row = Math.floor(Math.random() * props.rows);
+      let row = Math.floor(Math.random() * props.grid);
       let col = Math.floor(Math.random() * props.columns);
 
       let chosencell = grid[row][col];
@@ -66,17 +66,17 @@ class Grid extends Component {
     });
 
     neighbours.then((countNeighbours) => {
-      let rows = this.state.rows;
-      let currentCell = rows[cell.y][cell.x];
+      let grid = this.state.grid;
+      let currentCell = grid[cell.y][cell.x];
       currentCell.minesAround = countNeighbours;
       if (
         (currentCell.hasMine && this.props.openedCells === 0) ||
         (this.props.openedCells === 0 && currentCell.minesAround >= 1)
       ) {
-        let newRows = this.createGrid(this.props);
+        let newGrid = this.createGrid(this.props);
         this.setState(
           {
-            rows: newRows,
+            grid: newGrid,
           },
           () => {
             this.click(cell);
@@ -87,7 +87,7 @@ class Grid extends Component {
           this.props.onCellInspect();
           currentCell.isPressed = true;
 
-          this.setState({ rows }, () => {
+          this.setState({ grid }, () => {
             this.winCheck();
           });
           if (!currentCell.hasMine && countNeighbours === 0) {
@@ -104,10 +104,10 @@ class Grid extends Component {
   };
 
   winCheck = () => {
-    let grid = this.state.rows;
+    let grid = this.state.grid;
     if (
       this.props.mines + this.props.openedCells >=
-      this.props.columns * this.props.rows
+      this.props.columns * this.props.grid
     ) {
       for (let row = 0; row < grid.length; row++) {
         for (let col = 0; col < grid[0].length; col++) {
@@ -122,7 +122,7 @@ class Grid extends Component {
   };
 
   revealBombs = () => {
-    let grid = this.state.rows;
+    let grid = this.state.grid;
     for (let row = 0; row < grid.length; row++) {
       for (let col = 0; col < grid[0].length; col++) {
         let cell = grid[row][col];
@@ -144,11 +144,11 @@ class Grid extends Component {
           let rowOff = row + cell.y;
           let colOff = col + cell.x;
           if (
-            rowOff < this.state.rows.length &&
-            colOff < this.state.rows[0].length
+            rowOff < this.state.grid.length &&
+            colOff < this.state.grid[0].length
           ) {
             if (
-              this.state.rows[rowOff][colOff].hasMine &&
+              this.state.grid[rowOff][colOff].hasMine &&
               !(row === 0 && col === 0)
             ) {
               total++;
@@ -162,21 +162,21 @@ class Grid extends Component {
 
   countEmptyCell = (cell) => {
     //Spin through the neighbouring cells just as in the before method
-    let rows = this.state.rows;
+    let grid = this.state.grid;
     for (let row = -1; row <= 1; row++) {
       for (let col = -1; col <= 1; col++) {
         if (cell.y + row >= 0 && cell.x + col >= 0) {
           let rowOff = row + cell.y;
           let colOff = col + cell.x;
           if (
-            rowOff < this.state.rows.length &&
-            colOff < this.state.rows[0].length
+            rowOff < this.state.grid.length &&
+            colOff < this.state.grid[0].length
           ) {
             if (
-              !rows[rowOff][colOff].hasMine &&
-              !rows[rowOff][colOff].isPressed
+              !grid[rowOff][colOff].hasMine &&
+              !grid[rowOff][colOff].isPressed
             ) {
-              this.click(rows[rowOff][colOff]);
+              this.click(grid[rowOff][colOff]);
             }
           }
         }
@@ -185,7 +185,7 @@ class Grid extends Component {
   };
 
   flag = (cell) => {
-    let rows = this.state.rows;
+    let grid = this.state.grid;
     if (
       this.props.game === "ended" ||
       this.props.game === "won" ||
@@ -194,19 +194,19 @@ class Grid extends Component {
       return;
     } else if (!cell.isPressed) {
       cell.hasFlag = !cell.hasFlag;
-      this.setState({ rows });
+      this.setState({ grid });
       this.props.changeFlagsNumber(cell.hasFlag ? -1 : 1);
     }
   };
 
   render() {
-    //Create rows
-    let rows = this.state.rows.map((row, index) => {
+    //Create grid
+    let grid = this.state.grid.map((row, index) => {
       return (
         <GridRow cells={row} key={index} click={this.click} flag={this.flag} />
       );
     });
-    return <div className="grid">{rows}</div>;
+    return <div className="grid">{grid}</div>;
   }
 }
 
