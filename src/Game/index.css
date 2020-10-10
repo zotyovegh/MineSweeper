@@ -9,6 +9,13 @@ body {
   transform: translateX(-50%);
 }
 
+.logo {
+  width: fit-content;
+  height: fit-content;
+  margin: 0 auto;
+  padding-top: 2px;
+}
+
 .game {
   width: 50%;
   width: fit-content;

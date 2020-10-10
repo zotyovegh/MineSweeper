@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Cell from "../Cell";
+import logo from "./GithubLogo.jpg";
 
 class Grid extends Component {
   constructor(props) {
@@ -194,7 +195,7 @@ class Grid extends Component {
       return;
     } else if (!cell.isPressed) {
       cell.hasFlag = !cell.hasFlag;
-      this.setState({ grid });      
+      this.setState({ grid });
       this.props.changeFlagsNumber(cell.hasFlag ? -1 : 1);
     }
   };
@@ -217,7 +218,17 @@ class Grid extends Component {
         </div>
       );
     });
-    return <div className="grid">{grid}</div>;
+    return (
+      <div>
+        <div className="grid">{grid}</div>
+        <div className="logo">
+          <a href="https://github.com/zotyovegh/MineSweeper">
+            {" "}
+            <img width="100" height="25" src={logo} />
+          </a>
+        </div>
+      </div>
+    );
   }
 }
 
