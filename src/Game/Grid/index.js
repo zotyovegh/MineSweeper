@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import GridRow from "../GridRow";
+import Cell from "../Cell";
 
 class Grid extends Component {
   constructor(props) {
@@ -194,7 +194,7 @@ class Grid extends Component {
       return;
     } else if (!cell.isPressed) {
       cell.hasFlag = !cell.hasFlag;
-      this.setState({ grid });
+      this.setState({ grid });      
       this.props.changeFlagsNumber(cell.hasFlag ? -1 : 1);
     }
   };
@@ -203,7 +203,18 @@ class Grid extends Component {
     //Create grid
     let grid = this.state.grid.map((row, index) => {
       return (
-        <GridRow cells={row} key={index} click={this.click} flag={this.flag} />
+        <div key={index} className="row">
+          {row.map((cell, cellIndex) => {
+            return (
+              <Cell
+                key={cellIndex}
+                data={cell}
+                click={this.click}
+                flag={this.flag}
+              />
+            );
+          })}
+        </div>
       );
     });
     return <div className="grid">{grid}</div>;
