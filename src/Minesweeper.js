@@ -96,7 +96,7 @@ class Minesweeper extends Component {
             flags={this.state.mines}
           />
         </div>
-        <div className="highscore">
+        <div>
           <Highscore lastValue={this.getLastValue} />
         </div>
       </div>

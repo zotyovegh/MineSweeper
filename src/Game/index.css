@@ -1,4 +1,4 @@
-html,
+
 body {
   margin: 0;
   padding: 10px;
@@ -7,6 +7,16 @@ body {
   height: 100%;
   display: flex;
   font-size: 28px;
+  position: fixed;
+  left: 50%;
+  top: 52%;
+  transform: translate(-50%, -50%);
+}
+
+.game{
+  width: 50%;
+  width: fit-content;
+  margin: 0 auto;
 }
 
 .flags,
