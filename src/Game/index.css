@@ -1,19 +1,15 @@
-
 body {
   margin: 0;
   padding: 10px;
   font-family: sans-serif;
   display: flex;
-  height: 100%;
-  display: flex;
   font-size: 28px;
-  position: fixed;
+  position: absolute;
   left: 50%;
-  top: 52%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
 }
 
-.game{
+.game {
   width: 50%;
   width: fit-content;
   margin: 0 auto;
@@ -71,14 +67,13 @@ body {
   border-right: 2px solid black;
 }
 
-.flagged.cell{
-  background-color: rgb(224,224,224)
+.flagged.cell {
+  background-color: rgb(224, 224, 224);
 }
 
-.flagged.cell:hover{
-  background-color: rgb(211,211,211);
+.flagged.cell:hover {
+  background-color: rgb(211, 211, 211);
 }
-
 
 .cell:hover {
   background-color: rgb(231, 255, 250);

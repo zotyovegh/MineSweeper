@@ -3,9 +3,10 @@
   margin-top: 10px;
   min-width: max-content;
   height: fit-content;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
-
-
 
 .category {
   font-size: 14px;
