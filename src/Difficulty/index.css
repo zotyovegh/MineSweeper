@@ -1,11 +1,13 @@
 .difficultyStyles {
+  min-width: max-content;
   width: 430px;
   height: 250px;
   max-width: 100%;
   margin: 0 auto;
   position: absolute;
   margin-top: 80px;
-  margin-left: 40px;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 999;
   background-color: lightgrey;
   padding: 10px, 20px, 40px;
