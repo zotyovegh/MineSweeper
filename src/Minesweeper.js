@@ -18,6 +18,15 @@ class Minesweeper extends Component {
       mines: 10,
     };
     this.game = createRef();
+    this.title = "Minesweeper";
+  }
+
+  componentWillReceiveProps(nextProps) {
+    document.title = this.title;
+  }
+  
+  componentDidMount() {
+    document.title = this.title;
   }
 
   manageDifficulty = () => {
