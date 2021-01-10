@@ -1,0 +1,47 @@
+.controls {
+  width: 350px;
+  height: auto;
+  max-width: 100%;
+  position: absolute;
+  z-index: 999;
+  margin-top: 60px;
+  margin-left: 40px;
+  background-color: lightgrey;
+  padding: 10px, 20px, 40px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid black;
+  font-size: 25px;
+  padding-bottom: 10px;
+
+  &__header {
+    margin-top: 5px;
+    margin-left: 10px;
+    font-weight: bold;
+
+    &__closer {
+      cursor: pointer;
+      float: right;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      font-weight: bold;
+      font-size: 20px;
+      align-self: flex-end;
+      margin-right: 5px;
+    }
+  }
+
+  &__title {
+    font-size: 26px;
+    margin-top: 5px;
+    margin-left: 10px;
+  }
+
+  &__list {
+    margin-left: 20px;
+    margin-right: 20px;
+    font-size: 22px;
+  }
+}

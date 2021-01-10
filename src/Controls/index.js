@@ -9,13 +9,13 @@ class Controls extends Component {
 
   render() {
     let controls = (
-      <div className="controlsStyles">
-        <table className="header">
+      <div className="controls">
+        <table className="controls__header">
           <tbody>
             <tr>
-              <td id="titles">Controls</td>
+              <td id="controls__header__title">Controls</td>
               <td colSpan="3">
-                <button className="closeButton" onClick={this.props.onClose}>
+                <button className="controls__header__closer" onClick={this.props.onClose}>
                   x
                 </button>
               </td>
@@ -23,7 +23,7 @@ class Controls extends Component {
           </tbody>
         </table>
 
-        <div className="list">
+        <div className="controls__list">
           <li>Left-click an empty square to reveal it.</li>
           <li>Right-click an empty square to flag it.</li>
           <li>Press Esc or click the reset to start a new game.</li>
