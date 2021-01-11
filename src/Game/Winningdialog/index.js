@@ -25,7 +25,7 @@ class WinningDialog extends Component {
           Congratulations, you beat the game in {this.props.time} seconds!!!
         </div>
 
-        {(this.props.limit !== -1 || this.props.limit > this.props.time) && (
+        {(this.props.limit === -1 || this.props.limit > this.props.time) && (
           <div>
             <input
               type="text"
