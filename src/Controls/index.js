@@ -13,9 +13,9 @@ class Controls extends Component {
         <table className="controls__header">
           <tbody>
             <tr>
-              <td id="controls__header__title">Controls</td>
+              <td id="controls__title">Controls</td>
               <td colSpan="3">
-                <button className="controls__header__closer" onClick={this.props.onClose}>
+                <button className="controls__closer" onClick={this.props.onClose}>
                   x
                 </button>
               </td>

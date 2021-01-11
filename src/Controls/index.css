@@ -4,8 +4,10 @@
   max-width: 100%;
   position: absolute;
   z-index: 999;
-  margin-top: 60px;
-  margin-left: 40px;
+  margin-top: 80px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
   background-color: lightgrey;
   padding: 10px, 20px, 40px;
   border-radius: 8px;
@@ -27,7 +29,7 @@
   font-weight: bold;
 }
 
-.controls__header__closer {
+.controls__closer {
   cursor: pointer;
   float: right;
   border-radius: 50%;
