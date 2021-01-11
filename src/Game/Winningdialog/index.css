@@ -32,6 +32,7 @@
 
 .winning__content {
   text-align: center;
+  margin-bottom: 10px;
 }
 
 .winning__buttons {
@@ -41,11 +42,24 @@
   margin-top: 5px;
 }
 
-#cancel {
-  margin-left: 80px;
+.winning__input {
+  float: left;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  margin-bottom: 5px;
 }
 
-#name {
-  width: 120px;
+.winning__save {
+  float: right;
+  margin-bottom: 5px;
+}
+
+.winning__newGame {
+  float: left;
+}
+
+.winning__cancel {
+  float: right;
 }
 /*# sourceMappingURL=index.css.map */
