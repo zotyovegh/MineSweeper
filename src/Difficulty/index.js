@@ -83,13 +83,13 @@ class Difficulty extends Component {
 
   render() {
     let difficulty = (
-      <div className="difficultyStyles">
+      <div className="difficulty">
         <table>
           <tbody>
             <tr>
-              <td id="tableTitle">Difficulty</td>
+              <td className="difficulty__title">Difficulty</td>
               <td colSpan="3">
-                <button className="closeButton" onClick={this.props.onClose}>
+                <button className="difficulty__closer" onClick={this.props.onClose}>
                   x
                 </button>
               </td>
@@ -168,7 +168,7 @@ class Difficulty extends Component {
                   type="number"
                   value={this.state.customrows}
                   onChange={this.onCustomRowChange}
-                  className="custom"
+                  className="difficulty__customItem"
                   disabled={this.state.isCustomSelected}
                 ></input>
               </td>
@@ -177,7 +177,7 @@ class Difficulty extends Component {
                   type="number"
                   value={this.state.customcolumns}
                   onChange={this.onCustomColumnChange}
-                  className="custom"
+                  className="difficulty__customItem"
                   disabled={this.state.isCustomSelected}
                 ></input>
               </td>
@@ -186,14 +186,14 @@ class Difficulty extends Component {
                   type="number"
                   value={this.state.custommines}
                   onChange={this.onCustomMinesChange}
-                  className="custom"
+                  className="difficulty__customItem"
                   disabled={this.state.isCustomSelected}
                 ></input>
               </td>
             </tr>
           </tbody>
         </table>
-        <button id="newGame" onClick={this.newGame}>
+        <button className="difficulty__newGame" onClick={this.newGame}>
           New Game
         </button>
       </div>

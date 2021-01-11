@@ -1,4 +1,4 @@
-.difficultyStyles {
+.difficulty {
   min-width: -webkit-max-content;
   min-width: -moz-max-content;
   min-width: max-content;
@@ -26,7 +26,7 @@
   font-size: 25px;
 }
 
-.closeButton {
+.difficulty__closer {
   cursor: pointer;
   float: right;
   border-radius: 50%;
@@ -39,12 +39,12 @@
   margin-right: 5px;
 }
 
-.custom {
-  width: 60px;
-  font-size: 22px;
+.difficulty__title {
+  font-weight: bold;
+  padding-left: 10px;
 }
 
-#newGame {
+.difficulty__newGame {
   width: 140px;
   height: 30px;
   font-size: 20px;
@@ -52,8 +52,8 @@
   margin-left: 5px;
 }
 
-#tableTitle {
-  font-weight: bold;
-  padding-left: 10px;
+.difficulty__customItem {
+  width: 60px;
+  font-size: 22px;
 }
 /*# sourceMappingURL=index.css.map */

@@ -1,4 +1,4 @@
-.difficultyStyles {
+.difficulty {
   min-width: max-content;
   width: 430px;
   height: 250px;
@@ -16,34 +16,34 @@
   flex-direction: column;
   border: 2px solid black;
   font-size: 25px;
-}
 
-.closeButton {
-  cursor: pointer;
-  float: right;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  font-weight: bold;
-  font-size: 20px;
-  align-self: flex-end;
-  margin-right: 5px;
-}
+  &__closer {
+    cursor: pointer;
+    float: right;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-weight: bold;
+    font-size: 20px;
+    align-self: flex-end;
+    margin-right: 5px;
+  }
 
-.custom {
-  width: 60px;
-  font-size: 22px;
-}
+  &__title {
+    font-weight: bold;
+    padding-left: 10px;
+  }
 
-#newGame {
-  width: 140px;
-  height: 30px;
-  font-size: 20px;
-  margin-top: 10px;
-  margin-left: 5px;
-}
+  &__newGame {
+    width: 140px;
+    height: 30px;
+    font-size: 20px;
+    margin-top: 10px;
+    margin-left: 5px;
+  }
 
-#tableTitle {
-  font-weight: bold;
-  padding-left: 10px;
+  &__customItem {
+    width: 60px;
+    font-size: 22px;
+  }
 }
