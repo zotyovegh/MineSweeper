@@ -1,7 +1,8 @@
-.winningStyles {
+.winning {
+  font-size: 20px;
+  max-width: 300px;
   width: fit-content;
   height: fit-content;
-  max-width: 100%;
   margin: 0 auto;
   position: fixed;
   left: 50%;
@@ -16,37 +17,20 @@
   border: 2px solid black;
   font-size: 25px;
   padding: 10px;
+
+  &__content{
+    text-align: center;
+  }
+
+  &__buttons {
+    width: fit-content;
+    margin-top: 5px;
+  }
 }
 
-.closeButton {
-  cursor: pointer;
-  float: right;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  font-weight: bold;
-  font-size: 20px;
-  align-self: flex-end;
-  margin-right: 5px;
-}
-
-.custom {
-  width: 60px;
-  font-size: 22px;
-}
 
 #cancel {
   margin-left: 80px;
-}
-
-.buttons {
-  width: fit-content;
-  margin-top: 5px;
-}
-
-.winningStyles {
-  font-size: 20px;
-  max-width: 230px;
 }
 
 #name {
