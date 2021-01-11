@@ -1,28 +1,18 @@
 .winningStyles {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
   width: fit-content;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
   height: fit-content;
   max-width: 100%;
   margin: 0 auto;
   position: fixed;
   left: 50%;
   top: 48%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
   z-index: 999;
   background-color: rgba(144, 238, 144, 0.935);
   padding: 10px, 20px, 40px;
   border-radius: 8px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
   border: 2px solid black;
   font-size: 25px;
   padding: 10px;
@@ -36,8 +26,7 @@
   height: 30px;
   font-weight: bold;
   font-size: 20px;
-  -ms-flex-item-align: end;
-      align-self: flex-end;
+  align-self: flex-end;
   margin-right: 5px;
 }
 
@@ -51,8 +40,6 @@
 }
 
 .buttons {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
   width: fit-content;
   margin-top: 5px;
 }
@@ -65,4 +52,3 @@
 #name {
   width: 120px;
 }
-/*# sourceMappingURL=index.css.map */
