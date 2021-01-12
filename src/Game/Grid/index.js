@@ -204,7 +204,7 @@ class Grid extends Component {
     //Create grid
     let grid = this.state.grid.map((row, index) => {
       return (
-        <div key={index} className="row">
+        <div key={index} className="grid__row">
           {row.map((cell, cellIndex) => {
             return (
               <Cell

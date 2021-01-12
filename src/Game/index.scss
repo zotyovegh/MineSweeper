@@ -47,12 +47,13 @@ body {
   border: 2px solid black;
 }
 
-.row {
-  display: flex;
-}
-
-.row:last-child {
-  border-bottom: 1px solid black;
+.grid {
+  &__row {
+    display: flex;
+    &:last-child {
+      border-bottom: 1px solid black;
+    }
+  }
 }
 
 .cell {
@@ -64,14 +65,18 @@ body {
   align-items: center;
   border-bottom: 1px solid black;
   font-weight: bold;
-}
 
-.cell:first-child {
-  border-left: 2px solid black;
-}
+  &:first-child {
+    border-left: 2px solid black;
+  }
 
-.cell:last-child {
-  border-right: 2px solid black;
+  &:last-child {
+    border-right: 2px solid black;
+  }
+
+  &:hover {
+    background-color: rgb(231, 255, 250);
+  }
 }
 
 .flagged.cell {
@@ -80,10 +85,6 @@ body {
 
 .flagged.cell:hover {
   background-color: rgb(211, 211, 211);
-}
-
-.cell:hover {
-  background-color: rgb(231, 255, 250);
 }
 
 .pressed.cell,

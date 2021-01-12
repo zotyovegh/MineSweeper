@@ -71,13 +71,13 @@ body {
   border: 2px solid black;
 }
 
-.row {
+.grid__row {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
 
-.row:last-child {
+.grid__row:last-child {
   border-bottom: 1px solid black;
 }
 
@@ -106,16 +106,16 @@ body {
   border-right: 2px solid black;
 }
 
+.cell:hover {
+  background-color: #e7fffa;
+}
+
 .flagged.cell {
   background-color: #e0e0e0;
 }
 
 .flagged.cell:hover {
   background-color: lightgray;
-}
-
-.cell:hover {
-  background-color: #e7fffa;
 }
 
 .pressed.cell,
