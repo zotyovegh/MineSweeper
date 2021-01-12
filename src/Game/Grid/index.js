@@ -219,9 +219,9 @@ class Grid extends Component {
       );
     });
     return (
-      <div>
-        <div className="grid">{grid}</div>
-        <div className="logo">
+      <div className="grid">
+        {grid}
+        <div className="grid__logo">
           <a href="https://github.com/zotyovegh/MineSweeper">
             {" "}
             <img width="100" height="25" src={logo} />

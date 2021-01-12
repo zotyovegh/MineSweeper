@@ -152,7 +152,7 @@ class Game extends Component {
       width: this.state.columns * 34 + (this.state.columns >= 8 ? +12 : 9),
     };
     return (
-      <div className="minesweeper">
+      <div className="game">
         <div style={widthstyle}>
           <Header
             time={this.state.time}

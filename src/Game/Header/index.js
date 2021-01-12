@@ -6,12 +6,12 @@ const Header = (props) => {
   let timeToSend = minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
 
   return (
-    <div className="grid-header">
-      <div className="flags">{props.flags}</div>
-      <button className="reset" onClick={props.reset}>
+    <div className="game__header">
+      <div className="game__flags">{props.flags}</div>
+      <button className="game__reset" onClick={props.reset}>
         RESET
       </button>
-      <div className="timer">{timeToSend}</div>
+      <div className="game__timer">{timeToSend}</div>
     </div>
   );
 };
