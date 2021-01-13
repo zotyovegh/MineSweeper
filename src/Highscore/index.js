@@ -53,42 +53,42 @@ const Highscore = (props) => {
   props.lastValue(beginnerLast, intermediateLast, expertLast);
 
   return (
-    <div className="main">
-      <div className="category">
-        <div className="title">Beginner</div>
+    <div className="highscore">
+      <div className="highscore__category">
+        <div className="highscore__title">Beginner</div>
         <ol>
           {beginner.map((data) => (
-            <li className="item" key={data.id}>
+            <li className="highscore__item" key={data.id}>
               <div>
-                <div className="name">{data.name}</div>
-                <div className="score">{data.highscore}</div>
+                <div className="highscore__name">{data.name}</div>
+                <div className="highscore__score">{data.highscore}</div>
               </div>
             </li>
           ))}
         </ol>
       </div>
-      <div className="category">
-        <div className="title">Intermediate</div>
+      <div className="highscore__category">
+        <div className="highscore__title">Intermediate</div>
 
         <ol>
           {intermediate.map((data) => (
-            <li className="item" key={data.id}>
+            <li className="highscore__item" key={data.id}>
               <div>
-                <div className="name">{data.name}</div>
-                <div className="score">{data.highscore}</div>
+                <div className="highscore__name">{data.name}</div>
+                <div className="highscore__score">{data.highscore}</div>
               </div>
             </li>
           ))}
         </ol>
       </div>
-      <div className="category">
-        <div className="title">Expert</div>
+      <div className="highscore__category">
+        <div className="highscore__title">Expert</div>
         <ol className="ol">
           {expert.map((data) => (
-            <li className="item" key={data.id}>
+            <li className="highscore__item" key={data.id}>
               <div>
-                <div className="name">{data.name}</div>
-                <div className="score">{data.highscore}</div>
+                <div className="highscore__name">{data.name}</div>
+                <div className="highscore__score">{data.highscore}</div>
               </div>
             </li>
           ))}

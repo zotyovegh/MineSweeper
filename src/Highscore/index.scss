@@ -1,4 +1,4 @@
-.main {
+.highscore {
   display: flex;
   margin-top: 10px;
   min-width: max-content;
@@ -6,30 +6,30 @@
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-}
 
-.category {
-  font-size: 14px;
-  align-self: flex-start;
-  text-align: left;
-}
+  &__category {
+    font-size: 14px;
+    align-self: flex-start;
+    text-align: left;
+  }
 
-.score {
-  width: 20px;
-  float: left;
-}
+  &__title {
+    margin-left: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
 
-.name {
-  width: 100px;
-  float: left;
-}
+  &__score {
+    width: 20px;
+    float: left;
+  }
 
-.item {
-  margin-top: -12px;
-}
+  &__name {
+    width: 100px;
+    float: left;
+  }
 
-.title {
-  margin-left: 20px;
-  font-weight: bold;
-  margin-bottom: 15px;
+  &__item {
+    margin-top: -12px;
+  }
 }
