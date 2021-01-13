@@ -1,24 +1,16 @@
 .main {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   margin-top: 10px;
-  min-width: -webkit-max-content;
-  min-width: -moz-max-content;
   min-width: max-content;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
   height: fit-content;
   position: absolute;
   left: 50%;
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
+  transform: translateX(-50%);
 }
 
 .category {
   font-size: 14px;
-  -ms-flex-item-align: start;
-      align-self: flex-start;
+  align-self: flex-start;
   text-align: left;
 }
 
@@ -41,4 +33,3 @@
   font-weight: bold;
   margin-bottom: 15px;
 }
-/*# sourceMappingURL=index.css.map */
