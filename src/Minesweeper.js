@@ -24,7 +24,7 @@ class Minesweeper extends Component {
   componentWillReceiveProps(nextProps) {
     document.title = this.title;
   }
-  
+
   componentDidMount() {
     document.title = this.title;
   }
@@ -77,37 +77,28 @@ class Minesweeper extends Component {
   render() {
     return (
       <div>
-        <div className="game">
-          <div>
-            <button onClick={this.manageDifficulty}>Difficulty</button>
-            <button onClick={this.manageControls}>Controls</button>
-          </div>
-
-          <Difficulty
-            isOpen={this.state.isDifficultyOpen}
-            onClose={(e) => this.setState({ isDifficultyOpen: false })}
-            onNewGame={this.onNewGame}
-            grid={this.state.grid}
-            columns={this.state.columns}
-            mines={this.state.mines}
-          ></Difficulty>
-
-          <Controls
-            isOpen={this.state.isControlsOpen}
-            onClose={(e) => this.setState({ isControlsOpen: false })}
-          ></Controls>
-
-          <Game
-            ref={this.game}
-            grid={this.state.grid}
-            columns={this.state.columns}
-            mines={this.state.mines}
-            flags={this.state.mines}
-          />
-        </div>
-        <div>
-          <Highscore lastValue={this.getLastValue} />
-        </div>
+        <button onClick={this.manageDifficulty}>Difficulty</button>
+        <button onClick={this.manageControls}>Controls</button>
+        <Difficulty
+          isOpen={this.state.isDifficultyOpen}
+          onClose={(e) => this.setState({ isDifficultyOpen: false })}
+          onNewGame={this.onNewGame}
+          grid={this.state.grid}
+          columns={this.state.columns}
+          mines={this.state.mines}
+        ></Difficulty>
+        <Controls
+          isOpen={this.state.isControlsOpen}
+          onClose={(e) => this.setState({ isControlsOpen: false })}
+        ></Controls>
+        <Game
+          ref={this.game}
+          grid={this.state.grid}
+          columns={this.state.columns}
+          mines={this.state.mines}
+          flags={this.state.mines}
+        />
+        <Highscore lastValue={this.getLastValue} />
       </div>
     );
   }
