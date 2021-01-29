@@ -36,27 +36,27 @@ function Minesweeper(props) {
   }*/
 
   const manageDifficulty = () => {
-    /* isDifficultyOpen
+    isDifficultyOpen
       ? setIsDifficultyOpen(false)
-      : setIsDifficultyOpen(true) && setIsControlsOpen(false);*/
+      : (function () {
+          setIsDifficultyOpen(true);
+        })(setIsControlsOpen(false));
   };
 
   const manageControls = () => {
-    /* isControlsOpen
-   ? setIsControlsOpen(false)
-   : setIsControlsOpen(true) && setIsDifficultyOpen(false);*/
+    isControlsOpen
+      ? setIsControlsOpen(false)
+      : (function () {
+          setIsControlsOpen(true);
+        })(setIsDifficultyOpen(false));
   };
 
   const manageDifficultyOnNewGame = () => {
-    /* this.state.isDifficultyOpen
-      ? this.setState({ isDifficultyOpen: false })
-      : this.setState({ isDifficultyOpen: true });*/
+    isDifficultyOpen ? setIsDifficultyOpen(false) : setIsDifficultyOpen(true);
   };
 
   const manageControlsOnNewGame = () => {
-    /* this.state.isControlsOpen
-      ? this.setState({ isControlsOpen: false })
-      : this.setState({ isControlsOpen: true });*/
+    isControlsOpen ? setIsControlsOpen(false) : setIsControlsOpen(true);
   };
 
   const onNewGame = (recrows, reccolumns, recmines) => {
@@ -81,7 +81,7 @@ function Minesweeper(props) {
       <button onClick={manageControls}>Controls</button>
       <Difficulty
         isOpen={isDifficultyOpen}
-        onClose={(e) => this.setState({ isDifficultyOpen: false })}
+        onClose={(e) => setIsDifficultyOpen(false)}
         onNewGame={onNewGame}
         grid={grid}
         columns={columns}
@@ -89,7 +89,7 @@ function Minesweeper(props) {
       ></Difficulty>
       <Controls
         isOpen={isControlsOpen}
-        onClose={(e) => this.setState({ isControlsOpen: false })}
+        onClose={(e) => setIsControlsOpen(false)}
       ></Controls>
       <Game
         ref={game}

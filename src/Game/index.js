@@ -16,7 +16,7 @@ class Game extends Component {
       mines: props.mines,
       flags: props.flags,
       game: "pending",
-      isWinningDialog: true,
+      isWinningDialog: false,
       category: this.getCategory(),
       limit: "",
     };
