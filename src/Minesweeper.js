@@ -1,4 +1,4 @@
-import React, { Component, createRef } from "react";
+import React, { useState, createRef } from "react";
 
 import Game from "../../minesweeper/src/Game";
 import Difficulty from "./Difficulty";
@@ -6,8 +6,14 @@ import Controls from "./Controls";
 import "./index.css";
 import Highscore from "./Highscore";
 
-class Minesweeper extends Component {
-  constructor(props) {
+function Minesweeper(props) {
+  const [isDifficultyOpen, setIsDifficultyOpen] = useState(false);
+  const [isControlsOpen, setIsControlsOpen] = useState(false);
+  const [grid, setGrid] = useState(9);
+  const [columns, setColumns] = useState(9);
+  const [mines, setMines] = useState(10);
+  const game = createRef();
+  /* constructor(props) {
     super();
     this.state = {
       isDifficultyOpen: false,
@@ -18,90 +24,83 @@ class Minesweeper extends Component {
       mines: 10,
     };
     this.game = createRef();
-    this.title = "Minesweeper";
-  }
+    //this.title = "Minesweeper";
+  }*/
 
-  componentWillReceiveProps(nextProps) {
+  /*componentWillReceiveProps(nextProps) {
     document.title = this.title;
   }
 
   componentDidMount() {
     document.title = this.title;
-  }
+  }*/
 
-  manageDifficulty = () => {
-    this.state.isDifficultyOpen
+  const manageDifficulty = () => {
+    /* isDifficultyOpen
+      ? setIsDifficultyOpen(false)
+      : setIsDifficultyOpen(true) && setIsControlsOpen(false);*/
+  };
+
+  const manageControls = () => {
+    /* isControlsOpen
+   ? setIsControlsOpen(false)
+   : setIsControlsOpen(true) && setIsDifficultyOpen(false);*/
+  };
+
+  const manageDifficultyOnNewGame = () => {
+    /* this.state.isDifficultyOpen
       ? this.setState({ isDifficultyOpen: false })
-      : this.setState({ isDifficultyOpen: true, isControlsOpen: false });
+      : this.setState({ isDifficultyOpen: true });*/
   };
 
-  manageControls = () => {
-    this.state.isControlsOpen
+  const manageControlsOnNewGame = () => {
+    /* this.state.isControlsOpen
       ? this.setState({ isControlsOpen: false })
-      : this.setState({ isControlsOpen: true, isDifficultyOpen: false });
+      : this.setState({ isControlsOpen: true });*/
   };
 
-  manageDifficultyOnNewGame = () => {
-    this.state.isDifficultyOpen
-      ? this.setState({ isDifficultyOpen: false })
-      : this.setState({ isDifficultyOpen: true });
+  const onNewGame = (recrows, reccolumns, recmines) => {
+    manageDifficultyOnNewGame();
+    manageControlsOnNewGame();
+    (function () {
+      setGrid(recrows);
+      setColumns(reccolumns);
+      setMines(recmines);
+    })(game.current.reset());
   };
 
-  manageControlsOnNewGame = () => {
-    this.state.isControlsOpen
-      ? this.setState({ isControlsOpen: false })
-      : this.setState({ isControlsOpen: true });
-  };
-
-  onNewGame = (recrows, reccolumns, recmines) => {
-    this.manageDifficultyOnNewGame();
-    this.manageControlsOnNewGame();
-    this.setState(
-      {
-        grid: recrows,
-        columns: reccolumns,
-        mines: recmines,
-      },
-      () => {
-        this.game.current.reset();
-      }
-    );
-  };
-
-  getLastValue = (beginner, intermediate, expert) => {
-    if (this.game.current !== null) {
-      this.game.current.setLastValues(beginner, intermediate, expert);
+  const getLastValue = (beginner, intermediate, expert) => {
+    if (game.current !== null) {
+      game.current.setLastValues(beginner, intermediate, expert);
     }
   };
 
-  render() {
-    return (
-      <div>
-        <button onClick={this.manageDifficulty}>Difficulty</button>
-        <button onClick={this.manageControls}>Controls</button>
-        <Difficulty
-          isOpen={this.state.isDifficultyOpen}
-          onClose={(e) => this.setState({ isDifficultyOpen: false })}
-          onNewGame={this.onNewGame}
-          grid={this.state.grid}
-          columns={this.state.columns}
-          mines={this.state.mines}
-        ></Difficulty>
-        <Controls
-          isOpen={this.state.isControlsOpen}
-          onClose={(e) => this.setState({ isControlsOpen: false })}
-        ></Controls>
-        <Game
-          ref={this.game}
-          grid={this.state.grid}
-          columns={this.state.columns}
-          mines={this.state.mines}
-          flags={this.state.mines}
-        />
-        <Highscore lastValue={this.getLastValue} />
-      </div>
-    );
-  }
+  return (
+    <div>
+      <button onClick={manageDifficulty}>Difficulty</button>
+      <button onClick={manageControls}>Controls</button>
+      <Difficulty
+        isOpen={isDifficultyOpen}
+        onClose={(e) => this.setState({ isDifficultyOpen: false })}
+        onNewGame={onNewGame}
+        grid={grid}
+        columns={columns}
+        mines={mines}
+      ></Difficulty>
+      <Controls
+        isOpen={isControlsOpen}
+        onClose={(e) => this.setState({ isControlsOpen: false })}
+      ></Controls>
+      <Game
+        ref={game}
+        grid={grid}
+        columns={columns}
+        mines={mines}
+        flags={mines}
+      />
+      <Highscore lastValue={getLastValue} />
+    </div>
+  );
 }
 
 export default Minesweeper;
