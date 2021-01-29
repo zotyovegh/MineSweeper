@@ -1,66 +1,54 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import "./index.css";
 import firebase from "../../firebase";
 
-class WinningDialog extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: "",
-    };
+function WinningDialog(props) {
+  const [name, setName] = useState("");
 
-    this.onNameChange = this.onNameChange.bind(this);
-  }
-
-  onNameChange(e) {
-    this.setState({
-      name: e.target.value,
-    });
-  }
-
-  render() {
-    let winningDialog = (
-      <div className="winning">
-        <div className="winning__content">
-          Congratulations, you beat the game in {this.props.time} seconds!!!
-        </div>
-
-        {(this.props.limit === -1 || this.props.limit > this.props.time) && (
-          <div>
-            <input
-              type="text"
-              className="winning__input"
-              onChange={this.onNameChange}
-            ></input>
-            <button className="winning__save" onClick={this.onSaveTime}>
-              Save my time
-            </button>
-          </div>
-        )}
-
-        <div>
-          <button className="winning__newGame" onClick={this.props.onNewGame}>
-            New Game
-          </button>
-          <button className="winning__cancel" onClick={this.props.onClose}>
-            Cancel
-          </button>
-        </div>
-      </div>
-    );
-
-    if (!this.props.isOpen) {
-      winningDialog = null;
-    }
-    return <div>{winningDialog}</div>;
-  }
-
-  onSaveTime = (e) => {
-    firebase.firestore().collection(this.props.category).add({
-      name: this.state.name,
-      highscore: this.props.time,
-    });
-    this.props.onClose();
+  const onNameChange = (e) => {
+    setName(e.target.value);
   };
+  const onSaveTime = (e) => {
+    firebase.firestore().collection(this.props.category).add({
+      name: name,
+      highscore: props.time,
+    });
+    props.onClose();
+  };
+
+  let winningDialog = (
+    <div className="winning">
+      <div className="winning__content">
+        Congratulations, you beat the game in {props.time} seconds!!!
+      </div>
+
+      {(props.limit === -1 || props.limit > props.time) && (
+        <div>
+          <input
+            type="text"
+            className="winning__input"
+            onChange={onNameChange}
+          ></input>
+          <button className="winning__save" onClick={onSaveTime}>
+            Save my time
+          </button>
+        </div>
+      )}
+
+      <div>
+        <button className="winning__newGame" onClick={props.onNewGame}>
+          New Game
+        </button>
+        <button className="winning__cancel" onClick={props.onClose}>
+          Cancel
+        </button>
+      </div>
+    </div>
+  );
+
+  if (!props.isOpen) {
+    winningDialog = null;
+  }
+  return <div>{winningDialog}</div>;
 }
 export default WinningDialog;
