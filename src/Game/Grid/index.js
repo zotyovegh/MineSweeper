@@ -1,34 +1,15 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import Cell from "../Cell";
 import logo from "./GithubLogo.jpg";
 
-class Grid extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      grid: this.createGrid(props),
-    };
-    this.isNew = false;
-  }
+function Grid(props) {
+  const createGrid = (p) => {
+    let newGrid = [];
 
-  componentWillReceiveProps(nextProps) {
-    if (
-      this.props.openedCells > nextProps.openedCells ||
-      this.props.openedCells === 0
-    ) {
-      this.setState({
-        grid: this.createGrid(nextProps),
-      });
-    }
-  }
-
-  createGrid = (props) => {
-    let grid = [];
-
-    for (let i = 0; i < props.grid; i++) {
-      grid.push([]);
-      for (let j = 0; j < props.columns; j++) {
-        grid[i].push({
+    for (let i = 0; i < p.grid; i++) {
+      newGrid.push([]);
+      for (let j = 0; j < p.columns; j++) {
+        newGrid[i].push({
           x: j,
           y: i,
 
@@ -40,11 +21,11 @@ class Grid extends Component {
       }
     }
 
-    for (let i = 0; i < props.mines; i++) {
-      let row = Math.floor(Math.random() * props.grid);
-      let col = Math.floor(Math.random() * props.columns);
+    for (let i = 0; i < p.mines; i++) {
+      let row = Math.floor(Math.random() * p.grid);
+      let col = Math.floor(Math.random() * p.columns);
 
-      let chosencell = grid[row][col];
+      let chosencell = newGrid[row][col];
 
       if (chosencell.hasMine) {
         i--;
@@ -52,81 +33,84 @@ class Grid extends Component {
         chosencell.hasMine = true;
       }
     }
-    return grid;
+    return newGrid;
   };
+  const [grid, setGrid] = useState(createGrid(props));
+  const [openCells, setOpenCells] = useState(props.openedCells);
 
-  click = (cell) => {
-    if (this.props.game === "ended" || this.props.game === "won") {
+  useEffect(() => {
+     if (
+      openCells.openedCells > props.openedCells ||
+      props.openedCells === 0
+    ) {
+     // setGrid(createGrid(props));
+    }
+   // 
+  });
+
+  const click = (cell) => {
+    if (props.game === "ended" || props.game === "won") {
       return;
     }
 
     let neighbours = new Promise((resolve) => {
-      let bombs = this.countNeighbours(cell);
-
+      let bombs = countNeighbours(cell);
       resolve(bombs);
     });
 
     neighbours.then((countNeighbours) => {
-      let grid = this.state.grid;
-      let currentCell = grid[cell.y][cell.x];
+      let originalGrid = grid;
+      let currentCell = originalGrid[cell.y][cell.x];
       currentCell.minesAround = countNeighbours;
       if (
-        (currentCell.hasMine && this.props.openedCells === 0) ||
-        (this.props.openedCells === 0 && currentCell.minesAround >= 1)
+        (currentCell.hasMine && props.openedCells === 0) ||
+        (props.openedCells === 0 && currentCell.minesAround >= 1)
       ) {
-        let newGrid = this.createGrid(this.props);
-        this.setState(
-          {
-            grid: newGrid,
-          },
-          () => {
-            this.click(cell);
-          }
-        );
+        let newGrid = createGrid(props);
+        (function () {
+          setGrid(newGrid);
+        })(click(cell));
       } else {
         if (!currentCell.isPressed && !cell.hasFlag) {
-          this.props.onCellInspect();
+          props.onCellInspect();
           currentCell.isPressed = true;
 
-          this.setState({ grid }, () => {
-            this.winCheck();
-          });
-          if (!currentCell.hasMine && countNeighbours === 0) {
-            this.countEmptyCell(cell);
-          }
-          if (currentCell.hasMine && this.props.openedCells !== 0) {
-            this.revealBombs();
+          (function () {
+            setGrid(originalGrid);
+          })(winCheck());
 
-            this.props.finishGame();
+          if (!currentCell.hasMine && countNeighbours === 0) {
+            countEmptyCell(cell);
+          }
+          if (currentCell.hasMine && props.openedCells !== 0) {
+            revealBombs();
+            props.finishGame();
           }
         }
       }
     });
   };
 
-  winCheck = () => {
-    let grid = this.state.grid;
-    if (
-      this.props.mines + this.props.openedCells >=
-      this.props.columns * this.props.grid
-    ) {
-      for (let row = 0; row < grid.length; row++) {
-        for (let col = 0; col < grid[0].length; col++) {
-          let cell = grid[row][col];
+  const winCheck = () => {
+    let originalGrid = grid;
+    if (props.mines + props.openedCells >= props.columns * props.grid) {
+      for (let row = 0; row < originalGrid.length; row++) {
+        for (let col = 0; col < originalGrid[0].length; col++) {
+          let cell = originalGrid[row][col];
           if (cell.hasMine && cell.isPressed) {
             return;
           }
         }
       }
-      this.props.winning();
+      props.winning();
     }
   };
 
-  revealBombs = () => {
-    let grid = this.state.grid;
-    for (let row = 0; row < grid.length; row++) {
-      for (let col = 0; col < grid[0].length; col++) {
-        let cell = grid[row][col];
+  const revealBombs = () => {
+    let originalGrid = grid;
+    for (let row = 0; row < originalGrid.length; row++) {
+      for (let col = 0; col < originalGrid[0].length; col++) {
+        let cell = originalGrid[row][col];
         if (
           (cell.hasFlag && !cell.hasMine) ||
           (cell.hasMine && !cell.hasFlag)
@@ -136,7 +120,8 @@ class Grid extends Component {
       }
     }
   };
-  countNeighbours = (cell) => {
+
+  const countNeighbours = (cell) => {
     //Method based on the reference code, that was created in java
     let total = 0;
     for (let row = -1; row <= 1; row++) {
@@ -144,14 +129,8 @@ class Grid extends Component {
         if (cell.y + row >= 0 && cell.x + col >= 0) {
           let rowOff = row + cell.y;
           let colOff = col + cell.x;
-          if (
-            rowOff < this.state.grid.length &&
-            colOff < this.state.grid[0].length
-          ) {
-            if (
-              this.state.grid[rowOff][colOff].hasMine &&
-              !(row === 0 && col === 0)
-            ) {
+          if (rowOff < grid.length && colOff < grid[0].length) {
+            if (grid[rowOff][colOff].hasMine && !(row === 0 && col === 0)) {
               total++;
             }
           }
@@ -161,23 +140,20 @@ class Grid extends Component {
     return total;
   };
 
-  countEmptyCell = (cell) => {
+  const countEmptyCell = (cell) => {
     //Spin through the neighbouring cells just as in the before method
-    let grid = this.state.grid;
+    let orginalGrid = grid;
     for (let row = -1; row <= 1; row++) {
       for (let col = -1; col <= 1; col++) {
         if (cell.y + row >= 0 && cell.x + col >= 0) {
           let rowOff = row + cell.y;
           let colOff = col + cell.x;
-          if (
-            rowOff < this.state.grid.length &&
-            colOff < this.state.grid[0].length
-          ) {
+          if (rowOff < grid.length && colOff < grid[0].length) {
             if (
-              !grid[rowOff][colOff].hasMine &&
-              !grid[rowOff][colOff].isPressed
+              !orginalGrid[rowOff][colOff].hasMine &&
+              !orginalGrid[rowOff][colOff].isPressed
             ) {
-              this.click(grid[rowOff][colOff]);
+              click(orginalGrid[rowOff][colOff]);
             }
           }
         }
@@ -185,51 +161,42 @@ class Grid extends Component {
     }
   };
 
-  flag = (cell) => {
-    let grid = this.state.grid;
+  const flag = (cell) => {
+    let originalGrid = grid;
     if (
-      this.props.game === "ended" ||
-      this.props.game === "won" ||
-      this.props.game !== "running"
+      props.game === "ended" ||
+      props.game === "won" ||
+      props.game !== "running"
     ) {
       return;
     } else if (!cell.isPressed) {
       cell.hasFlag = !cell.hasFlag;
-      this.setState({ grid });
-      this.props.changeFlagsNumber(cell.hasFlag ? -1 : 1);
+      setGrid(originalGrid);
+      props.changeFlagsNumber(cell.hasFlag ? -1 : 1);
     }
   };
 
-  render() {
-    //Create grid
-    let grid = this.state.grid.map((row, index) => {
-      return (
-        <div key={index} className="grid__row">
-          {row.map((cell, cellIndex) => {
-            return (
-              <Cell
-                key={cellIndex}
-                data={cell}
-                click={this.click}
-                flag={this.flag}
-              />
-            );
-          })}
-        </div>
-      );
-    });
+  //Create grid
+  let mainGrid = grid.map((row, index) => {
     return (
-      <div className="grid">
-        {grid}
-        <div className="grid__logo">
-          <a href="https://github.com/zotyovegh/MineSweeper">
-            {" "}
-            <img width="100" height="25" src={logo} />
-          </a>
-        </div>
+      <div key={index} className="grid__row">
+        {row.map((cell, cellIndex) => {
+          return <Cell key={cellIndex} data={cell} click={click} flag={flag} />;
+        })}
       </div>
     );
-  }
+  });
+  return (
+    <div className="grid">
+      {mainGrid}
+      <div className="grid__logo">
+        <a href="https://github.com/zotyovegh/MineSweeper">
+          {" "}
+          <img width="100" height="25" src={logo} />
+        </a>
+      </div>
+    </div>
+  );
 }
 
 export default Grid;
