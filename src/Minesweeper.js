@@ -1,4 +1,4 @@
-import React, { useState, createRef } from "react";
+import React, { useState, createRef, useEffect } from "react";
 
 import Game from "../../minesweeper/src/Game";
 import Difficulty from "./Difficulty";
@@ -13,6 +13,10 @@ function Minesweeper(props) {
   const [columns, setColumns] = useState(9);
   const [mines, setMines] = useState(10);
   const game = createRef();
+  const [beginner, setBeginner] = useState(10000);
+  const [intermediate, setIntermediate] = useState(10000);
+  const [expert, setExpert] = useState(10000);
+
   /* constructor(props) {
     super();
     this.state = {
@@ -34,6 +38,8 @@ function Minesweeper(props) {
   componentDidMount() {
     document.title = this.title;
   }*/
+
+  
 
   const manageDifficulty = () => {
     isDifficultyOpen
@@ -69,10 +75,10 @@ function Minesweeper(props) {
     })(game.current.reset());
   };
 
-  const getLastValue = (beginner, intermediate, expert) => {
-    if (game.current !== null) {
-      game.current.setLastValues(beginner, intermediate, expert);
-    }
+  const getLastValue = (beg, inter, exp) => {
+      setBeginner(beg);
+      setIntermediate(inter);
+      setExpert(exp);    
   };
 
   return (
@@ -92,7 +98,9 @@ function Minesweeper(props) {
         onClose={(e) => setIsControlsOpen(false)}
       ></Controls>
       <Game
-        ref={game}
+        beginner={beginner}
+        intermediate={intermediate}
+        expert={expert}
         grid={grid}
         columns={columns}
         mines={mines}

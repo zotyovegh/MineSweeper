@@ -5,6 +5,9 @@ import firebase from "../../firebase";
 function WinningDialog(props) {
   const [name, setName] = useState("");
 
+  console.log("WDTIME: " + props.time)
+  console.log("WDLIMIT: " + props.limit)
+
   const onNameChange = (e) => {
     setName(e.target.value);
   };

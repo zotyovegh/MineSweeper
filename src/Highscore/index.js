@@ -52,6 +52,8 @@ const Highscore = (props) => {
 
   props.lastValue(beginnerLast, intermediateLast, expertLast);
 
+  console.log("kukiii " + beginnerLast +" " + intermediateLast)
+
   return (
     <div className="highscore">
       <div className="highscore__category">

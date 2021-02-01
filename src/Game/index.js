@@ -34,9 +34,7 @@ function Game(props) {
   const [isWinningDialog, setIsWinningDialog] = useState(false);
   const [category, setCategory] = useState(getCategory());
   const [limit, setLimit] = useState("");
-  const beginnerLast = "";
-  const intermediateLast = "";
-  const expertLast = "";
+ 
 
   // const [intervals, setIntervals] = useState([]);
 
@@ -79,11 +77,12 @@ function Game(props) {
     handleReset();
   }, []);
 
-  const setLastValues = (beginner, intermediate, expert) => {
+  /*const setLastValues = (beginner, intermediate, expert) => {
+    console.log("SETTINGS: " + beginner + " " + intermediate + " " + expert);
     beginnerLast = beginner;
     intermediateLast = intermediate;
     expertLast = expert;
-  };
+  };*/
 
   const reset = () => {
     setOpenedCells(0);
@@ -120,12 +119,14 @@ function Game(props) {
   const winning = () => {
     var value;
     if (category === "beginner") {
-      value = beginnerLast;
+      value = props.beginner;
     } else if (category === "intermediate") {
-      value = intermediateLast;
+      value = props.intermediate;
     } else if (category === "expert") {
-      value = expertLast;
+      value = props.expert;
     }
+    console.log("Category: " + category);
+    console.log("Limit: " + limit);
 
     setLimit(value);
     setGame("won");
