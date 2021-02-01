@@ -6,7 +6,7 @@ import Controls from "./Controls";
 import "./index.css";
 import Highscore from "./Highscore";
 
-function Minesweeper(props) {
+function Minesweeper() {
   const [isDifficultyOpen, setIsDifficultyOpen] = useState(false);
   const [isControlsOpen, setIsControlsOpen] = useState(false);
   const [grid, setGrid] = useState(9);
@@ -16,30 +16,6 @@ function Minesweeper(props) {
   const [beginner, setBeginner] = useState(10000);
   const [intermediate, setIntermediate] = useState(10000);
   const [expert, setExpert] = useState(10000);
-
-  /* constructor(props) {
-    super();
-    this.state = {
-      isDifficultyOpen: false,
-      isControlsOpen: false,
-      //beginner
-      grid: 9,
-      columns: 9,
-      mines: 10,
-    };
-    this.game = createRef();
-    //this.title = "Minesweeper";
-  }*/
-
-  /*componentWillReceiveProps(nextProps) {
-    document.title = this.title;
-  }
-
-  componentDidMount() {
-    document.title = this.title;
-  }*/
-
-  
 
   const manageDifficulty = () => {
     isDifficultyOpen
@@ -76,9 +52,9 @@ function Minesweeper(props) {
   };
 
   const getLastValue = (beg, inter, exp) => {
-      setBeginner(beg);
-      setIntermediate(inter);
-      setExpert(exp);    
+    setBeginner(beg);
+    setIntermediate(inter);
+    setExpert(exp);
   };
 
   return (

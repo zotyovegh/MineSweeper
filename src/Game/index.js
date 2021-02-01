@@ -34,9 +34,6 @@ function Game(props) {
   const [isWinningDialog, setIsWinningDialog] = useState(false);
   const [category, setCategory] = useState(getCategory());
   const [limit, setLimit] = useState("");
- 
-
-  // const [intervals, setIntervals] = useState([]);
 
   const [timer, setTimer] = useState(1);
   const countRef = useRef(null);
@@ -56,33 +53,9 @@ function Game(props) {
     setTimer(0);
   };
 
-  /*const escFunction = (e) => {
-    if (e.keyCode === 27) {
-      this.reset();
-    }
-  };
-  const escFunction(event) {
-    if (event.keyCode === 27) {
-      this.reset();
-    }
-  }
-  componentDidMount() {
-    document.addEventListener("keydown", this.escFunction, false);
-  }
-  componentWillUnmount() {
-    document.removeEventListener("keydown", this.escFunction, false);
-  }*/
-
   useEffect(() => {
     handleReset();
   }, []);
-
-  /*const setLastValues = (beginner, intermediate, expert) => {
-    console.log("SETTINGS: " + beginner + " " + intermediate + " " + expert);
-    beginnerLast = beginner;
-    intermediateLast = intermediate;
-    expertLast = expert;
-  };*/
 
   const reset = () => {
     setOpenedCells(0);
@@ -125,9 +98,6 @@ function Game(props) {
     } else if (category === "expert") {
       value = props.expert;
     }
-    console.log("Category: " + category);
-    console.log("Limit: " + limit);
-
     setLimit(value);
     setGame("won");
     handlePause();
