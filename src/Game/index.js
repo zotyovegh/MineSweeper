@@ -1,191 +1,167 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import "./index.css";
 import Grid from "./Grid";
 import Header from "./Header";
 
 import WinningDialog from "./Winningdialog";
 
-class Game extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      openedCells: 0,
-      time: 0,
-      grid: props.grid,
-      columns: props.columns,
-      mines: props.mines,
-      flags: props.flags,
-      game: "pending",
-      isWinningDialog: false,
-      category: this.getCategory(),
-      limit: "",
-    };
-    this.beginnerLast = "";
-    this.intermediateLast = "";
-    this.expertLast = "";
-    this.escFunction = this.escFunction.bind(this);
-  }
-
-  escFunction(event) {
-    if (event.keyCode === 27) {
-      this.reset();
-    }
-  }
-  componentDidMount() {
-    document.addEventListener("keydown", this.escFunction, false);
-  }
-  componentWillUnmount() {
-    document.removeEventListener("keydown", this.escFunction, false);
-  }
-
-  getCategory = () => {
-    if (
-      this.props.grid === 9 &&
-      this.props.columns === 9 &&
-      this.props.mines === 10
-    ) {
+function Game(props) {
+  const getCategory = () => {
+    if (props.grid === 9 && props.columns === 9 && props.mines === 10) {
       return "beginner";
     } else if (
-      this.props.grid === 16 &&
-      this.props.columns === 16 &&
-      this.props.mines === 40
+      props.grid === 16 &&
+      props.columns === 16 &&
+      props.mines === 40
     ) {
       return "intermediate";
     } else if (
-      this.props.grid === 16 &&
-      this.props.columns === 30 &&
-      this.props.mines === 99
+      props.grid === 16 &&
+      props.columns === 30 &&
+      props.mines === 99
     ) {
       return "expert";
     } else {
       return "";
     }
   };
+  const [openedCells, setOpenedCells] = useState(0);
+  const [time, setTime] = useState(0);
+  const [grid, setGrid] = useState(props.grid);
+  const [columns, setColumns] = useState(props.columns);
+  const [mines, setMines] = useState(props.mines);
+  const [flags, setFlags] = useState(props.flags);
+  const [game, setGame] = useState("pending");
+  const [isWinningDialog, setIsWinningDialog] = useState(false);
+  const [category, setCategory] = useState(getCategory());
+  const [limit, setLimit] = useState("");
+  const beginnerLast = "";
+  const intermediateLast = "";
+  const expertLast = "";
 
-  componentWillMount() {
-    this.intervals = [];
+  const escFunction = (e) => {
+    if (e.keyCode === 27) {
+      this.reset();
+    }
+  };
+  /*
+
+ 
+
+  const escFunction(event) {
+    if (event.keyCode === 27) {
+      this.reset();
+    }
+  }*/
+  /*  componentDidMount() {
+    document.addEventListener("keydown", this.escFunction, false);
   }
+  componentWillUnmount() {
+    document.removeEventListener("keydown", this.escFunction, false);
+  }*/
 
-  tick = () => {
-    if (this.state.openedCells > 0 && this.state.game === "running") {
-      let time = this.state.time + 1;
-      this.setState({ time });
+  /*componentWillMount() {
+    this.intervals = [];
+  }*/
+
+  const tick = () => {
+    if (openedCells > 0 && game === "running") {
+      let time = time + 1;
+      setTime(time);
     }
   };
 
-  setInterval = (fn, t) => {
-    this.intervals.push(setInterval(fn, t));
+  const setInterval = (fn, t) => {
+    //this.intervals.push(setInterval(fn, t));
   };
 
-  setLastValues = (beginner, intermediate, expert) => {
-    this.beginnerLast = beginner;
-    this.intermediateLast = intermediate;
-    this.expertLast = expert;
+  const setLastValues = (beginner, intermediate, expert) => {
+    beginnerLast = beginner;
+    intermediateLast = intermediate;
+    expertLast = expert;
   };
 
-  reset = () => {
-    this.newState = {
-      openedCells: 0,
-      time: 0,
-      grid: this.props.grid,
-      columns: this.props.columns,
-      mines: this.props.mines,
-      flags: this.props.flags,
-      game: "pending",
-      category: this.getCategory(),
-    };
-
+  const reset = () => {
     this.intervals.map(clearInterval);
 
-    this.setState({ ...this.newState }, () => {
-      this.intervals = [];
-    });
-    this.setState({ isWinningDialog: false });
+    setOpenedCells(0);
+    setTime(0);
+    setGrid(props.grid);
+    setColumns(props.columns);
+    setMines(props.mines);
+    setFlags(props.flags);
+    setGame("pending");
+    setCategory(getCategory());
+    setIsWinningDialog(false);
+
+    this.intervals = [];
   };
 
-  finishGame = () => {
-    this.setState({
-      game: "ended",
-    });
+  const finishGame = () => {
+    setGame("ended");
   };
 
-  handleCellInspect = () => {
-    if (this.state.game !== "running" && this.state.openedCells === 0) {
-      this.setState(
-        {
-          game: "running",
-        },
-        () => {
-          this.setInterval(this.tick, 1000);
-        }
-      );
+  const handleCellInspect = () => {
+    if (game !== "running" && openedCells === 0) {
+      (function () {
+        setGame("running");
+      })(setInterval(tick(), 1000));
     }
 
-    this.setState((previousState) => {
-      return { openedCells: previousState.openedCells + 1 };
-    });
+    setOpenedCells((previousState) => previousState + 1);
   };
 
-  changeFlagsNumber = (amount) => {
-    this.setState({ flags: this.state.flags + amount });
+  const changeFlagsNumber = (amount) => {
+    setFlags(flags + amount);
   };
 
-  winning = () => {
+  const winning = () => {
     var value;
-    if (this.state.category === "beginner") {
-      value = this.beginnerLast;
-    } else if (this.state.category === "intermediate") {
-      value = this.intermediateLast;
-    } else if (this.state.category === "expert") {
-      value = this.expertLast;
+    if (category === "beginner") {
+      value = beginnerLast;
+    } else if (category === "intermediate") {
+      value = intermediateLast;
+    } else if (category === "expert") {
+      value = expertLast;
     }
 
-    this.setState({
-      limit: value,
-      game: "won",
-      isWinningDialog: true,
-    });
+    setLimit(value);
+    setGame("won");
+    setIsWinningDialog(true);
   };
 
-  render() {
-    var widthstyle = {
-      width: this.state.columns * 34 + (this.state.columns >= 8 ? +12 : 9),
-    };
-    return (
-      <div className="game">
-        <div style={widthstyle}>
-          <Header
-            time={this.state.time}
-            flags={this.state.flags}
-            reset={this.reset}
-            columns={this.state.columns}
-          />
-        </div>
-        <div style={widthstyle}>
-          <Grid
-            game={this.state.game}
-            openedCells={this.state.openedCells}
-            grid={this.state.grid}
-            columns={this.state.columns}
-            mines={this.state.mines}
-            changeFlagsNumber={this.changeFlagsNumber}
-            onCellInspect={this.handleCellInspect}
-            finishGame={this.finishGame}
-            winning={this.winning}
-          />
-        </div>
-
-        <WinningDialog
-          category={this.state.category}
-          isOpen={this.state.isWinningDialog}
-          onClose={(e) => this.setState({ isWinningDialog: false })}
-          onNewGame={this.reset}
-          time={this.state.time}
-          limit={this.state.limit}
-        ></WinningDialog>
+  var widthstyle = {
+    width: columns * 34 + (columns >= 8 ? +12 : 9),
+  };
+  return (
+    <div className="game">
+      <div style={widthstyle}>
+        <Header time={time} flags={flags} reset={reset} columns={columns} />
       </div>
-    );
-  }
+      <div style={widthstyle}>
+        <Grid
+          game={game}
+          openedCells={openedCells}
+          grid={grid}
+          columns={columns}
+          mines={mines}
+          changeFlagsNumber={changeFlagsNumber}
+          onCellInspect={handleCellInspect}
+          finishGame={finishGame}
+          winning={winning}
+        />
+      </div>
+
+      <WinningDialog
+        category={category}
+        isOpen={isWinningDialog}
+        onClose={(e) => setIsWinningDialog(false)}
+        onNewGame={reset}
+        time={time}
+        limit={limit}
+      ></WinningDialog>
+    </div>
+  );
 }
 
 export default Game;
