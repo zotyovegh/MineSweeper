@@ -224,7 +224,7 @@ class Grid extends Component {
         <div className="grid__logo">
           <a href="https://github.com/zotyovegh/MineSweeper">
             {" "}
-            <img width="100" height="25" src={logo} />
+            <img width="100" height="25" alt="logo" src={logo} />
           </a>
         </div>
       </div>

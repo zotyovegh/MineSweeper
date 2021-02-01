@@ -1,4 +1,4 @@
-import React, { useState, createRef, useEffect } from "react";
+import React, { useState, createRef } from "react";
 
 import Game from "../../minesweeper/src/Game";
 import Difficulty from "./Difficulty";
@@ -52,9 +52,10 @@ function Minesweeper() {
   };
 
   const getLastValue = (beg, inter, exp) => {
-    setBeginner(beg);
-    setIntermediate(inter);
-    setExpert(exp);
+      setBeginner(beg);
+      setIntermediate(inter);
+      setExpert(exp);
+    
   };
 
   return (

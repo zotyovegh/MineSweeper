@@ -34,7 +34,7 @@ const Cell = (props) => {
               e.preventDefault();
             }}
           >
-            <img width="26" src={bomb} />
+            <img width="26" src={bomb} alt="bomb" />
           </div>
         );
       } else if (props.data.hasFlag) {
@@ -46,7 +46,7 @@ const Cell = (props) => {
               e.preventDefault();
             }}
           >
-            <img width="26" src={wrongFlag} />
+            <img width="26" alt="wrong flag" src={wrongFlag} />
           </div>
         );
       } else if (props.data.minesAround === 0) {
@@ -85,7 +85,7 @@ const Cell = (props) => {
             props.flag(props.data);
           }}
         >
-          <img width="16" src={flag} />
+          <img width="16" alt="flag" src={flag} />
         </div>
       );
     } else {
