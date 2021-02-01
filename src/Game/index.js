@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./index.css";
 import Grid from "./Grid";
 import Header from "./Header";
@@ -26,7 +26,6 @@ function Game(props) {
     }
   };
   const [openedCells, setOpenedCells] = useState(0);
-  const [time, setTime] = useState(0);
   const [grid, setGrid] = useState(props.grid);
   const [columns, setColumns] = useState(props.columns);
   const [mines, setMines] = useState(props.mines);
@@ -39,11 +38,41 @@ function Game(props) {
   const intermediateLast = "";
   const expertLast = "";
 
-  const escFunction = (e) => {
+  // const [intervals, setIntervals] = useState([]);
+
+  const [timer, setTimer] = useState(1);
+  const [isActive, setIsActive] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+  const countRef = useRef(null);
+
+  const handleStart = () => {
+    console.log("START");
+    setIsActive(true);
+    setIsPaused(true);
+    countRef.current = setInterval(() => {
+      setTimer((timer) => timer + 0);
+      console.log("Timer: " + timer);
+    }, 1000);
+  };
+
+  const handlePause = () => {
+    clearInterval(countRef.current);
+    setIsPaused(false);
+  };
+
+  const handleReset = () => {
+    clearInterval(countRef.current);
+    setIsActive(false);
+    setIsPaused(false);
+    setTimer(1);
+    console.log("RESET");
+  };
+
+  /*const escFunction = (e) => {
     if (e.keyCode === 27) {
       this.reset();
     }
-  };
+  };*/
   /*
 
  
@@ -64,16 +93,22 @@ function Game(props) {
     this.intervals = [];
   }*/
 
-  const tick = () => {
+  useEffect(() => {
+    console.log("heyy");
+    handleReset();
+  }, []);
+
+  /* const tick = () => {
     if (openedCells > 0 && game === "running") {
       let time = time + 1;
       setTime(time);
     }
-  };
+  };*/
 
-  const setInterval = (fn, t) => {
-    //this.intervals.push(setInterval(fn, t));
-  };
+  /* const setInterval = (fn, t) => {
+    console.log(intervals);
+     intervals.push(setInterval(fn, t));
+  };*/
 
   const setLastValues = (beginner, intermediate, expert) => {
     beginnerLast = beginner;
@@ -82,10 +117,10 @@ function Game(props) {
   };
 
   const reset = () => {
-    this.intervals.map(clearInterval);
+    // setIntervals(intervals.map(clearInterval));
 
     setOpenedCells(0);
-    setTime(0);
+    // setTime(0);
     setGrid(props.grid);
     setColumns(props.columns);
     setMines(props.mines);
@@ -94,18 +129,22 @@ function Game(props) {
     setCategory(getCategory());
     setIsWinningDialog(false);
 
-    this.intervals = [];
+    //setIntervals([]);
+    handleReset();
   };
 
   const finishGame = () => {
     setGame("ended");
+    console.log("DOOOONE");
+    handlePause();
   };
 
   const handleCellInspect = () => {
+    console.log("HANDLE INSPECT");
     if (game !== "running" && openedCells === 0) {
       (function () {
         setGame("running");
-      })(setInterval(tick(), 1000));
+      })(handleStart());
     }
 
     setOpenedCells((previousState) => previousState + 1);
@@ -127,6 +166,7 @@ function Game(props) {
 
     setLimit(value);
     setGame("won");
+    handlePause();
     setIsWinningDialog(true);
   };
 
@@ -136,7 +176,7 @@ function Game(props) {
   return (
     <div className="game">
       <div style={widthstyle}>
-        <Header time={time} flags={flags} reset={reset} columns={columns} />
+        <Header time={timer} flags={flags} reset={reset} columns={columns} />
       </div>
       <div style={widthstyle}>
         <Grid
@@ -157,7 +197,7 @@ function Game(props) {
         isOpen={isWinningDialog}
         onClose={(e) => setIsWinningDialog(false)}
         onNewGame={reset}
-        time={time}
+        time={timer}
         limit={limit}
       ></WinningDialog>
     </div>
