@@ -12,7 +12,7 @@ function WinningDialog(props) {
     setName(e.target.value);
   };
   const onSaveTime = (e) => {
-    firebase.firestore().collection(this.props.category).add({
+    firebase.firestore().collection(props.category).add({
       name: name,
       highscore: props.time,
     });
