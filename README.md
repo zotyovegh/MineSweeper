@@ -1,3 +1,5 @@
+#Minesweeper
+
 This game has been my first javascript micro-project. I was seeking to gain as high an understanding of React as it is possible, for later projects to improve.
 
 The idea is based on the classic Minesweeper game, and uses all its original functionalities and features, including:
